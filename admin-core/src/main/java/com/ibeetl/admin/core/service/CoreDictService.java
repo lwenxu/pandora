@@ -1,10 +1,9 @@
 package com.ibeetl.admin.core.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ibeetl.admin.core.dao.CoreDictDao;
 import com.ibeetl.admin.core.entity.CoreDict;
-import com.ibeetl.admin.core.util.PlatformException;
 import com.ibeetl.admin.core.util.enums.DelFlagEnum;
 
 /**
@@ -83,6 +81,16 @@ public class CoreDictService extends BaseService<CoreDict> {
        }
  	  
  	   return null;
+    }
+    
+    /*通过名字反向查找数据字典，通常用于excel导入*/
+    public Map<String,CoreDict> mapDictByName(String type){
+        List<CoreDict> list = self.findAllByType(type);
+        Map<String,CoreDict> map = new HashMap<String,CoreDict>();
+        for(CoreDict dict:list) {
+            map.put(dict.getName(), dict);
+        }
+        return  map;
     }
     
    

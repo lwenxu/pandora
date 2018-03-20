@@ -12,6 +12,8 @@ var Common = {
         parent.layer.msg(info, {
             icon: iconIndex
         });
+        
+        
     },
     info: function (info) {
         Common.alert(info, 0);
@@ -20,7 +22,7 @@ var Common = {
         Common.alert(info, 1);
     },
     error: function (info) {
-        Common.alert(info, 2);
+    		Common.openConfirm(info)
     },
     post: function (url, paras, next) {
     		$.ajax({
@@ -29,7 +31,7 @@ var Common = {
     			data:paras,
     			success:function(rsp){
     				if(rsp.code!=0){
-    					Common.alert(rsp.msg);
+    					Common.error(rsp.msg);
     					
     				}else{
     					//成功
@@ -42,7 +44,7 @@ var Common = {
     				
     			},
     			error:function(rsp){
-    				Common.alert(rsp.responseJSON.msg);
+    				Common.error(rsp.responseJSON.msg);
     			}
     		})
        

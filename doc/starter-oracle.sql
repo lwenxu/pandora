@@ -28,6 +28,11 @@ prompt Dropping CORE_USER...
 drop table CORE_USER cascade constraints;
 prompt Dropping CORE_USER_ROLE...
 drop table CORE_USER_ROLE cascade constraints;
+
+CREATE SEQUENCE AUDIT_SEQ INCREMENT BY 1 MINVALUE 3000 NOCYCLE NOCACHE NOORDER  ;
+CREATE SEQUENCE CORE_SEQ INCREMENT BY 1 MINVALUE 3000 NOCYCLE NOCACHE NOORDER  ;
+
+
 prompt Creating CMS_BLOG...
 create table CMS_BLOG
 (
