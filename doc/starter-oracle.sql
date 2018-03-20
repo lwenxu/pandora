@@ -248,7 +248,7 @@ create table CORE_FUNCTION
 (
   id          NUMBER(11) not null,
   code        VARCHAR2(256),
-  name        VARCHAR2(16),
+  name        VARCHAR2(64),
   create_time DATE,
   access_url  VARCHAR2(256),
   parent_id   NUMBER(11),
@@ -284,8 +284,8 @@ prompt Creating CORE_MENU...
 create table CORE_MENU
 (
   id             NUMBER(11) not null,
-  code           VARCHAR2(16),
-  name           VARCHAR2(16),
+  code           VARCHAR2(64),
+  name           VARCHAR2(64),
   create_time    DATE,
   function_id    NUMBER(11),
   type           VARCHAR2(6),
