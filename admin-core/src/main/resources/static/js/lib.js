@@ -275,7 +275,6 @@ var Lib = {
 	},
 	buttonEnable:function(buttonCode,enable){
 	    var btn = $("#table-button-"+buttonCode);
-	    debugger;
 	    if(enable){
 	        btn.attr('disabled',"false");
 	        btn.removeClass("button-disabled")

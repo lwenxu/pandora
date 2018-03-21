@@ -5,7 +5,7 @@
 
 基本技术栈来源于我为电子工业出版社编写的的[<<Spring Boot 2 精髓 >>](http://ibeetl.com/sb2/#more) (这本书每一章也有各种例子，但Springboot-plus 更偏向于应用而不是教学)
 
-当前版本:1.0.0.Snapshot
+当前版本:1.0.0
 
 技术交流群：219324263
 
@@ -62,7 +62,44 @@ SpringBoot-plus 是一个适合大系统拆分成小系统的架构，或者是�
 
 ### 1.2.1 配置子系统
 
+子系统不需要做任何配置即可在IDE里直接运行，如果你想打包城jar方式运行，则需要添加
+
+~~~xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+~~~
+
+如果你想打包成war放到tomcat下运行，需要修改maven打包为war
+
+~~~xmml
+<packaging>war</packaging>
+~~~
+
+### 1.2.2 菜单系统
+
+系统默认提供三种类型菜单
+* 系统级菜单，出现在页面顶部，表示一个子系统
+* 导航菜单，出现在页面左边，点击导航将打开其下所有菜单
+* 菜单，点开菜单将定位到页面，菜单必须关联到一个功能点。
+
+建议新建立一个子系统来放置新功能
+
+SpringPlus-Boot 并非以菜单或者按钮来组织整个系统，而是以功能点来组织整个系统提供的功能。如果要使得菜单生效，你必须要先常见一个功能点并且功能点有一个访问地址，然后将此菜单关联到这个功能点
+
+> SpringBoot-Plus 先建立功能点是个好习惯，功能点被组织成一颗树，代表了系统应该提供功能的功能，我们看代码就会看到，功能点跟菜单，跟权限，和数据权限都有密切关系
+
+
 ###  1.2.2 添加代码
+
+可以参考1.3业务代码生成生成初始化的代码
+
+
 
 
 
@@ -71,9 +108,7 @@ SpringBoot-plus 是一个适合大系统拆分成小系统的架构，或者是�
 
 在介绍如何利用Plus开发系统之前，先介绍代码生成功能，此功能可以生成前后端代码总计14个文件，你可以通过预览功能了解如何开发这个系统
 
-
-
-![doc/readme/user.png](doc/readme/codeoverview.png)
+![doc/readme/user.png](doc/readme/codeconfig.png)
 
 
 
@@ -86,9 +121,17 @@ SpringBoot-plus 是一个适合大系统拆分成小系统的架构，或者是�
 
 其他修改的地方有
 
+是否包含导入导出，如果选择，则会生成导入导出的代码，导入导出模板则需要参考已有功能(比如数据字典)来完成
+
+是否包含附件管理，如果选择，则业务对象可以关联一组附件，比如客户关联一组附件，或者申请信息关联一组附件。
+
 字段信息的显示名字，这个用于前端列表，表单的显示，应当输入中文名字
 
 作为搜索，可以勾选几个搜索条件，系统自动生成一个搜索配置类
+
+如果字段关联数据字典，那么设置一个数据字典，这样，生成的界面将会编程一个下拉列表
+
+
 
 ### 1.3.1 前端代码
 
@@ -122,10 +165,11 @@ SpringBoot-plus 是一个适合大系统拆分成小系统的架构，或者是�
 
 * orgInput.tag.html 组织机构输入框
 * simpleDictSelect.tag.html 字典下拉列表
-* childrenDictSelect.tag.html 级联字典下拉列表
+* simpleDataSelect.tag   包含key-value的下拉列表
 * searchForm.tag.html  通用搜索表单
 * submitButtons.tag.html 提交按钮
 * accessButton.tag.html  普通按钮（含权限）
+* attachment.tag.html   附件管理组件
 * ....
 
 
