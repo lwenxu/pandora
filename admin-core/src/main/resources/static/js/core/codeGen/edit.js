@@ -36,7 +36,7 @@ layui.define([ 'form', 'laydate', 'table','codeApi'], function(exports) {
 						gen:function(){
 							codeApi.gen(function(){
 								Common.info("代码生成成功，请刷新工程");
-								Lib.closeFrame();
+								
 							});
 						},
 						cancel:function(){

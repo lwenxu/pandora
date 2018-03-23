@@ -17,7 +17,7 @@
             <label class="layui-form-label">${item.displayName}</label>
             <div class="layui-input-inline">
 				@if(isEmpty(item.dictType)){
-                <input type="text" name="${item.name}" class="layui-input" ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}>
+                <input type="text" name="${item.name}" class="layui-input${item.javaType=='Date'?' input-date'}" ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}>
 				@}else{
                 <layui:simpleDictSelect style='layui-input-inline' type="${item.dictType}" layVerify="${verifyFormat(item.verifyList)}" 
                 			id="${item.name}" name="${item.name}" value="" />
