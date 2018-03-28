@@ -10,7 +10,7 @@ layui.define([ 'form', 'laydate', 'table','${entity.code}Api'], function(exports
         initSubmit:function(){
             $("#updateButton").click(function(){
                 form.on('submit(form)', function(){
-                    ${entity.code}Api.update${upperFirst(entity.code)}($('#updateForm'),function(
+                    ${entity.code}Api.update${upperFirst(entity.code)}($('#updateForm'),function(){
                        parent.window.dataReload();
                        Common.info("更新成功");
                        Lib.closeFrame();
@@ -20,6 +20,7 @@ layui.define([ 'form', 'laydate', 'table','${entity.code}Api'], function(exports
             $("#updateButton-cancel").click(function(){
                 Lib.closeFrame();
             });
+        }
             
     }
     exports('edit',view);

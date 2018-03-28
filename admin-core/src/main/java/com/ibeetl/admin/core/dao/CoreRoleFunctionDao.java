@@ -9,7 +9,7 @@ import com.ibeetl.admin.core.entity.CoreRoleFunction;
 
 import java.util.List;
 
-@SqlResource("core.coerRoleFunction")
+@SqlResource("core.coreRoleFunction")
 public interface CoreRoleFunctionDao extends BaseMapper<CoreRoleFunction> {
 
 
