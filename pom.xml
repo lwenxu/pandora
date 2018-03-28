@@ -87,43 +87,9 @@
 		    <version>11.2.0</version>
 	    </dependency> -->
 
+	
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
 		
-		<!-- 会和jxls 冲突？还是需要配置一种具体实现 -->
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.17</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.17</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.jxls</groupId>
-			<artifactId>jxls-reader</artifactId>
-			<version>2.0.3</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jxls</groupId>
-			<artifactId>jxls</artifactId>
-			<version>2.4.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jxls</groupId>
-			<artifactId>jxls-poi</artifactId>
-			<version>1.0.14</version>
-		</dependency>
 
 	</dependencies>
 
