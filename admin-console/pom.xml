@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ibeetl</groupId>
 	<artifactId>admin-console</artifactId>
-	<version>1.1</version>
+	<version>1.1.1</version>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>com.ibeetl</groupId>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>com.ibeetl</groupId>
 			<artifactId>admin-core</artifactId>
-			<version>1.1</version>
+			<version>1.1.1</version>
 		</dependency>
 	</dependencies>
 

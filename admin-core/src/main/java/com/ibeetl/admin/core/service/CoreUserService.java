@@ -37,14 +37,18 @@ public class CoreUserService {
 		query.setCode(userName);
 		query.setPassword(passwordEncryptService.password(password));
 		query.setState(GeneralStateEnum.ENABLE.getValue());
-		CoreUser user =userDao.getSQLManager().templateOne(query);
-//		SysUser user = userDao.templateOne(query);
-		if(user==null){
-			return null;
+		CoreUser user =userDao.createLambdaQuery().andEq(CoreUser::getCode,userName).
+		    andEq(CoreUser::getPassword, passwordEncryptService.password(password)).single();
+		if(user==null) {
+		    throw new PlatformException("用户"+userName+"不存在或者密码错误");
 		}
-		if(user.getDelFlag()==DelFlagEnum.DELETED.getValue()||user.getState()==GeneralStateEnum.DISABLE.getValue()){
-			throw new PlatformException("用户"+userName+"已经删除或者失效");
+		if(!user.getState().equals(GeneralStateEnum.ENABLE.getValue())){
+		    throw new PlatformException("用户"+userName+"已经失效");
 		}
+		if(user.getDelFlag()==DelFlagEnum.DELETED.getValue()) {
+		    throw new PlatformException("用户"+userName+"已经删除");
+		}
+		
 		
 		List<CoreOrg>  orgs = getUserOrg(user.getId(),user.getOrgId());
 		UserLoginInfo loginInfo = new UserLoginInfo();
