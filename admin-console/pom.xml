@@ -1,22 +1,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ibeetl</groupId>
 	<artifactId>admin-console</artifactId>
-	<version>1.1.1</version>
 	<packaging>jar</packaging>
+<!-- 	<parent> -->
+<!-- 		<groupId>com.ibeetl</groupId> -->
+<!-- 		<artifactId>admin</artifactId> -->
+<!-- 		<version>1.1.1</version> -->
+<!-- 	</parent> -->
 	<parent>
 		<groupId>com.ibeetl</groupId>
-		<artifactId>admin</artifactId>
+		<artifactId>admin-cloud</artifactId>
 		<version>1.1.1</version>
 	</parent>
 
 	<dependencies>
-		
+
 		<dependency>
 			<groupId>com.ibeetl</groupId>
 			<artifactId>admin-core</artifactId>
 			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		
+<!-- 		重新覆盖mysql的版本，原因：虽然admin-core更新过mysql版本，但由于parent是admin-cloud，导致更新的版本失效 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.5</version>
 		</dependency>
 	</dependencies>
 
