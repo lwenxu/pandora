@@ -13,6 +13,7 @@
 		<module>admin-core</module>
 		<module>admin-console</module>
 		<module>admin-cloud</module>
+		<module>admin-workflow</module>
 	</modules>
 	<parent>
         <groupId>org.springframework.boot</groupId>
