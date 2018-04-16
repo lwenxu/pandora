@@ -9,7 +9,9 @@ public class ProcessStartEvent {
 	String processInsId;
 	String processKey;
 	String processName;
+	String taskId;
 	String taskInsId;
+	String taskName;
 	WfUser user;
 	Map processVars;
 	public String getProcessInsId() {
@@ -47,6 +49,24 @@ public class ProcessStartEvent {
 	}
 	public void setUser(WfUser user) {
 		this.user = user;
+	}
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+	public String getTaskName() {
+		return taskName;
+	}
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
+	}
+	@Override
+	public String toString() {
+		return "ProcessStartEvent [processInsId=" + processInsId + ", processKey=" + processKey + ", processName="
+				+ processName + ", taskId=" + taskId + ", taskInsId=" + taskInsId + ", taskName=" + taskName + ", user="
+				+ user + ", processVars=" + processVars + "]";
 	}
 	
 	

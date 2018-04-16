@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.ibeetl.starter.workflow.event.ProcessEndEvent;
+import com.ibeetl.starter.workflow.event.ProcessPauseEvent;
 import com.ibeetl.starter.workflow.event.ProcessStartEvent;
 import com.ibeetl.starter.workflow.event.TaskEndEvent;
 import com.ibeetl.starter.workflow.event.TaskOwnerChangeEvent;
+import com.ibeetl.starter.workflow.event.TaskPauseEvent;
 import com.ibeetl.starter.workflow.event.TaskStartEvent;
 import com.ibeetl.starter.workflow.event.TaslClaimEvent;
 import com.ibeetl.starter.workflow.service.WfNotifyService;
@@ -69,16 +71,18 @@ public class WorkflowConfig {
 			}
 
 			@Override
-			public void taskPause(String taskInsId) {
-				log.info("taskIns "+taskInsId+" pause");
+			public void taskPause(TaskPauseEvent pauseEvent) {
+				log.info(pauseEvent);
 				
 			}
 
 			@Override
-			public void processPause(String processInsId) {
-				log.info("processInsId "+processInsId+" pause");
+			public void processPause(ProcessPauseEvent pauseEvent) {
+				log.info(pauseEvent);
 				
 			}
+
+		
 			
 			
 		};
