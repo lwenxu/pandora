@@ -20,6 +20,12 @@
 			<artifactId>admin-core</artifactId>
 			<version>1.1.2</version>
 		</dependency>
+		<!--  admin-console 包含了系统管理管理的所有功能，子系统可以不使用这部分 -->
+		<dependency>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>admin-console</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
