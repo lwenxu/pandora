@@ -3,19 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>admin-console</artifactId>
 	<packaging>jar</packaging>
-<!-- 	<parent> -->
-<!-- 		<groupId>com.ibeetl</groupId> -->
-<!-- 		<artifactId>admin</artifactId> -->
-<!-- 		<version>1.1.1</version> -->
-<!-- 	</parent> -->
 	<parent>
 		<groupId>com.ibeetl</groupId>
 		<artifactId>admin-cloud</artifactId>
 		<version>1.1.1</version>
 	</parent>
-
 	<dependencies>
-
 		<dependency>
 			<groupId>com.ibeetl</groupId>
 			<artifactId>admin-core</artifactId>
