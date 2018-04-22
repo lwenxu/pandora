@@ -1,12 +1,13 @@
-layui.define(['table', 'orgApi'], function(exports) {
+layui.define(['table', 'orgApi','treeGrid'], function(exports) {
 	var orgApi = layui.orgApi;
 	var table=layui.table;
+	var treeGrid = layui.treeGrid;
 	var view = {
 			init:function(){
 				
 			},
 			delBatch:function(){
-				var data = Common.getMoreDataFromTable(table,"orgTable");
+				var data = Common.getMoreDataFromTable(treeGrid,"orgTable");
 				if(data==null){
 					return ;
 				}
