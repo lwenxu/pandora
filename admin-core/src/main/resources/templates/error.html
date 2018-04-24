@@ -1,8 +1,11 @@
-<!--#layout("/common/container.html"){  -->
-<h2>ErrorCode:${status}</h2>
-<h5>Message:${errorMessage}</h5>
-<h5>RequestPath:${requestPath}</h5>
+<!--#layout("/common/container.html"){-->
+<script>
+    layui.use('layer', function () {
+        parent.layer.open({
+            content: '${errorMessage}'
+            ,btn: '确定'
+        });
 
-
-<i>此错误信息来自 error.html文件，通过CustomErrorController.java统一处理</i>
+    })
+</script>
 <!--#}  -->

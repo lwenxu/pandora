@@ -27,7 +27,7 @@ queryByCondtion
 	@}
 	
 	@pageIgnoreTag(){
-	   order by m.seq asc , m.id desc
+	   order by m.id
 	@}
 	
 

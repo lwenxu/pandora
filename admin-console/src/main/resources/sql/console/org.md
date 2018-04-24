@@ -23,6 +23,10 @@ queryByCondtion
     @if(!isEmpty(parentOrgId)){
         and  o.parent_org_id = #parentOrgId#
     @}
+
+    @pageIgnoreTag(){
+    	   order by o.id
+    @}
    
   
 

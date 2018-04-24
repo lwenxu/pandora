@@ -9,97 +9,34 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 	</properties>
-
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RC1</version>
-	</parent><!-- Add typical dependencies for a web application -->
+		<groupId>com.ibeetl</groupId>
+		<artifactId>admin-cloud</artifactId>
+		<version>1.1.2</version>
+	</parent>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>admin-core</artifactId>
+			<version>1.1.2</version>
 		</dependency>
+		<!--  admin-console 包含了系统管理管理的所有功能，子系统可以不使用这部分 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>admin-console</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-
 		
+<!-- 		重新覆盖mysql的版本，原因：虽然admin-core更新过mysql版本，但由于parent是admin-cloud，导致更新的版本失效 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.5</version>
 		</dependency>
-
-		
-
-
-		<dependency>
-			<groupId>com.ibeetl</groupId>
-			<artifactId>admin-core</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ibeetl</groupId>
-			<artifactId>admin-console</artifactId>
-			<version>1.0</version>
-		</dependency>
-
 	</dependencies>
-
-
-
-	<!-- Add Spring repositories -->
-	<!-- (you don't need this if you are using a .RELEASE version) -->
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<url>http://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<url>http://repo.spring.io/snapshot</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<url>http://repo.spring.io/milestone</url>
-		</pluginRepository>
-	</pluginRepositories>
-
-
-
-
 </project>

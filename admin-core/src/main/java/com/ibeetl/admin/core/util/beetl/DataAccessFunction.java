@@ -101,6 +101,7 @@ public class DataAccessFunction implements Function {
 			switch(ret.getStatus()){
 			case NoneOrg:{
 				sb.append(targets.get("org")+" in (-1) ");
+				break;
 			}
 			case AllOrg:{
 				//sql 不包含组织机构过滤信息
@@ -128,6 +129,7 @@ public class DataAccessFunction implements Function {
 					}
 				}
 				sb.append(") ");
+				break;
 			
 			}
 			case OnlyOrg:{
@@ -152,6 +154,7 @@ public class DataAccessFunction implements Function {
 					}
 				}
 				sb.append(") ");
+				break;
 			}
 			default:{
 				log.warn("错误的"+ret.getStatus().toString());
@@ -166,32 +169,7 @@ public class DataAccessFunction implements Function {
 		return sb.toString();
 	}
 	
-	private String appendAlias(String alias,String sql){
-		if(alias==null){
-			return sql;
-		}
-		
-		return " " +alias+"."+sql;
-	}
-	
-	private void buildSqlIn(List<Long> list,List<Object> paras,Map targets,StringBuilder sql){
-		if(list.isEmpty()){
-			//如果没有满足条件的部门
-			sql.append(targets.get("org")+" in (-1)");
-		}
-		
-		sql.append(targets.get("org")+" in (");
-		for(int i=0;i<list.size();i++){
-			sql.append("?");
-			if(i!=list.size()-1){
-				sql.append(",");
-			}
-			paras.add(new SQLParameter(list.get(i)));
-			
-		}
-		
-		sql.append(")");
-	}
+
 	
 	
 }

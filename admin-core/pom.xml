@@ -42,13 +42,7 @@
 			<artifactId>beetl-framework-starter</artifactId>
 			<version>1.1.47.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>com.trigersoft</groupId>
-			<artifactId>jaque</artifactId>
-			<version>2.1.2</version>
-			<scope>provided</scope>
-		</dependency>
-	
+		
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
@@ -64,28 +58,7 @@
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0</version>
 	    </dependency> -->
-
-    
-    
-    
         <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-            <version>2.12.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-x-discovery</artifactId>
-            <version>2.12.0</version>
-        </dependency>
-        	<dependency>
 			<groupId>org.jxls</groupId>
 			<artifactId>jxls-reader</artifactId>
 			<version>2.0.3</version>
@@ -123,7 +96,7 @@
     <parent>
         <groupId>com.ibeetl</groupId>
         <artifactId>admin</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
     </parent>
 
   
