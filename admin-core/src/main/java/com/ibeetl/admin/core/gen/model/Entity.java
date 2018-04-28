@@ -19,6 +19,8 @@ public class Entity {
 	boolean attachment=false;
 	//是否生成代码，也同时生成功能点
 	boolean autoAddFunction = false;
+	boolean autoAddMenu = false;
+	
 	public String getName() {
 		return name;
 	}
@@ -105,6 +107,12 @@ public class Entity {
 	}
 	public void setAutoAddFunction(boolean autoAddFunction) {
 		this.autoAddFunction = autoAddFunction;
+	}
+	public boolean isAutoAddMenu() {
+		return autoAddMenu;
+	}
+	public void setAutoAddMenu(boolean autoAddMenu) {
+		this.autoAddMenu = autoAddMenu;
 	}
 	
 }

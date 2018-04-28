@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.beetl.sql.core.JavaType;
 import org.beetl.sql.core.NameConversion;
 import org.beetl.sql.core.SQLManager;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibeetl.admin.core.entity.CoreFunction;
+import com.ibeetl.admin.core.entity.CoreMenu;
 import com.ibeetl.admin.core.gen.model.Attribute;
 import com.ibeetl.admin.core.gen.model.Entity;
 
@@ -30,6 +33,8 @@ public class CoreCodeGenService {
 	SQLManager sqlManager;
 	@Autowired
 	CorePlatformService platformService;
+	
+	Log log = LogFactory.getLog(CoreCodeGenService.class);
 	
 	public List<Entity> getAllEntityInfo(){
 		MetadataManager meta = sqlManager.getMetaDataManager();
@@ -103,7 +108,7 @@ public class CoreCodeGenService {
 		return e;
 	}
 	
-	public boolean insertFunction(Entity data,String urlBase){
+	public Long insertFunction(Entity data,String urlBase){
 		String  preffix =  urlBase.replace('/', '.');
 		String functionCode = preffix+"."+data.getCode();
 		String indexFunctonCode = functionCode+".query";
@@ -111,10 +116,10 @@ public class CoreCodeGenService {
 		query.setCode(indexFunctonCode);
 		Object o = sqlManager.templateOne(query);
 		if(o != null){
-			return true;
+			return -1l;
 		}
 		
-		//设置功能点
+		//设置父功能点
 		CoreFunction rootFunction = new CoreFunction();
 		rootFunction.setName(data.getDisplayName());
 		rootFunction.setCode(functionCode);
@@ -167,6 +172,27 @@ public class CoreCodeGenService {
 		//刷新缓存
 		platformService.clearFunctionCache();
 		
+		return indexFunction.getId();
+	}
+	
+	public boolean insertMenu(Long functionId,Entity data,String urlBase){
+		CoreMenu query = new CoreMenu();
+		query.setCode("代码生成导航");
+		CoreMenu menu = this.sqlManager.templateOne(query);
+		if(menu==null) {
+			log.warn("未找到对应的父菜单:"+query.getCode());
+			return false ;
+		}
+		Long parentId = query.getId();
+		
+		CoreMenu newMenu = new CoreMenu();
+		newMenu.setCode(data.getName()+".Manager");
+		newMenu.setName(data.getName()+"管理");
+		newMenu.setParentMenuId(parentId);
+		newMenu.setFunctionId(functionId);
+		newMenu.setType("MENU_M");
+		this.sqlManager.insert(newMenu);
+		this.platformService.clearMenuCache();
 		return true;
 	}
 

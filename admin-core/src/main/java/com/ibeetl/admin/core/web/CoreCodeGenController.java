@@ -284,6 +284,10 @@ public class CoreCodeGenController {
 			String code = entry.getValue();
 			content.put(gen.getName(), code);
 		}
+		
+
+		
+		
 		return JsonResult.success(content);
 
 	}
@@ -320,6 +324,7 @@ public class CoreCodeGenController {
 		entity.setAttachment(data.entity.isAttachment());
 		entity.setIncludeExcel(data.entity.isIncludeExcel());
 		entity.setAutoAddFunction(info.isAutoAddFunction());
+		entity.setAutoAddMenu(info.isAutoAddFunction());
 		for (int i = 0; i < entity.getList().size(); i++) {
 		    Attribute attr = entity.getList().get(i);
 		    attr.setDisplayName(info.getList().get(i).getDisplayName());
