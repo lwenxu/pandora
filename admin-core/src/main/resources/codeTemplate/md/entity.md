@@ -7,7 +7,7 @@ queryByCondition
     t.*
     \@}
     from ${entity.tableName} t
-    where 1=1  
+    where del_flag=0 
     \@//数据权限，该sql语句功能点  
     and #function("${entity.code}.query")#
     @for(attr in entity.list){

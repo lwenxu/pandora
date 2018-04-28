@@ -11,27 +11,36 @@
     <div class="layui-row">
         <div class="layui-form-item">
 		@for(item in array){
-		@if(item==null){continue;}
+			@if(item==null){continue;}
+			@if(item.name=="delFlag"){continue;}
+			@if(item.name=="version"){continue;}
+			@if(item.name=="attachmentId"){continue;}
             <div class="layui-inline">
             <label class="layui-form-label">${item.displayName}</label>
-            <div class="layui-input-inline">
+				<div class="layui-input-inline">
 				@if(isEmpty(item.dictType)){
-                <input type="text" id="${item.name}" name="${item.name}"  value="\${${entity.code}.${item.name}${item.javaType=='Date'?',"yyyy-MM-dd"'}}"  ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''} class="layui-input${item.javaType=='Date'?' input-date'}" >
+					<input type="text" id="${item.name}" name="${item.name}"  value="\${${entity.code}.${item.name}${item.javaType=='Date'?',"yyyy-MM-dd"'}}"  ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''} class="layui-input${item.javaType=='Date'?' input-date'}" >
 				@}else{
-                <layui:simpleDictSelect style='layui-input-inline' type="${item.dictType}" 
-					id="${item.name}" name="${item.name}" value="\${${entity.code}.${item.name}}" layVerify="${verifyFormat(item.verifyList)}" />
+					<layui:simpleDictSelect style='layui-input-inline' type="${item.dictType}"
+						id="${item.name}" name="${item.name}" value="\${${entity.code}.${item.name}}" layVerify="${verifyFormat(item.verifyList)}" />
 				@}
-            </div>
+				</div>
             </div>
 		@}
         </div>
     </div>
 	@}
-	
 	@if(entity.attachment){
     <div class="layui-row">
-        <layui:attachment name="attachmentId" batchFileUUID="\${${entity.code}.attachmentId}" isNew="false" bizId="\${${entity.code}.${entity.idAttribute.name}}" bizType="${entity.name}"/>
+        <layui:attachment name="attachmentId" batchFileUUID="\${${entity.code}.attachmentId!uuid()}" isNew="false" bizId="\${${entity.code}.${entity.idAttribute.name}}" bizType="${entity.name}"/>
     </div>
+	@}
+	<!-- 业务对象须有hidden字段，保存delFlag和version字段-->
+	@for(item in list){
+		@if(item==null){continue;}
+		@if((item.name=="delFlag")||(item.name=="version")){
+	<input type="hidden" name="${item.name}" value=\${${entity.code}.${item.name}} ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}/>
+		@}
 	@}
     <input type="hidden" name="${entity.idAttribute.name}" value=\${${entity.code}.${entity.idAttribute.name}} ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}/>
     <layui:submitButtons id="updateButton" />

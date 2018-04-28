@@ -131,7 +131,7 @@ public class CoreCodeGenService {
 			displayName =  comment.substring(0,index);
 			attr.setDisplayName(displayName);
 		}else {
-			attr.setDisplayName(attr.getName());
+			attr.setDisplayName(comment);
 		}
 	}
  
