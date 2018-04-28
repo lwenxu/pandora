@@ -13,9 +13,12 @@ public class Entity {
 	Attribute nameAttribute;
 	String comment;
 	String system;
+	//是否生成excel导入导出按钮
 	boolean includeExcel =false;
+	//是否包含附件信息
 	boolean attachment=false;
-	
+	//是否生成代码，也同时生成功能点
+	boolean autoAddFunction = false;
 	public String getName() {
 		return name;
 	}
@@ -97,5 +100,11 @@ public class Entity {
     public void setAttachment(boolean attachment) {
         this.attachment = attachment;
     }
+	public boolean isAutoAddFunction() {
+		return autoAddFunction;
+	}
+	public void setAutoAddFunction(boolean autoAddFunction) {
+		this.autoAddFunction = autoAddFunction;
+	}
 	
 }

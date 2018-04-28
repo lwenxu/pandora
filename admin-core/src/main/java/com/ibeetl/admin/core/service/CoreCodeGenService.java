@@ -1,9 +1,10 @@
 package com.ibeetl.admin.core.service;
 
-import org.beetl.core.Configuration;
-import org.beetl.core.GroupTemplate;
-import org.beetl.core.Template;
-import org.beetl.core.resource.ClasspathResourceLoader;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import org.beetl.sql.core.JavaType;
 import org.beetl.sql.core.NameConversion;
 import org.beetl.sql.core.SQLManager;
@@ -11,19 +12,12 @@ import org.beetl.sql.core.db.ClassDesc;
 import org.beetl.sql.core.db.ColDesc;
 import org.beetl.sql.core.db.MetadataManager;
 import org.beetl.sql.core.db.TableDesc;
-import org.beetl.sql.ext.gen.GenConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibeetl.admin.core.entity.CoreFunction;
 import com.ibeetl.admin.core.gen.model.Attribute;
 import com.ibeetl.admin.core.gen.model.Entity;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * 代码生成，用于根据表或者视图生成entity，mapper，service，conroller
@@ -34,6 +28,8 @@ import java.util.Set;
 public class CoreCodeGenService {
 	@Autowired
 	SQLManager sqlManager;
+	@Autowired
+	CorePlatformService platformService;
 	
 	public List<Entity> getAllEntityInfo(){
 		MetadataManager meta = sqlManager.getMetaDataManager();
@@ -106,6 +102,74 @@ public class CoreCodeGenService {
 		
 		return e;
 	}
+	
+	public boolean insertFunction(Entity data,String urlBase){
+		String  preffix =  urlBase.replace('/', '.');
+		String functionCode = preffix+"."+data.getCode();
+		String indexFunctonCode = functionCode+".query";
+		CoreFunction query = new CoreFunction();
+		query.setCode(indexFunctonCode);
+		Object o = sqlManager.templateOne(query);
+		if(o != null){
+			return true;
+		}
+		
+		//设置功能点
+		CoreFunction rootFunction = new CoreFunction();
+		rootFunction.setName(data.getDisplayName());
+		rootFunction.setCode(functionCode);
+		rootFunction.setCreateTime(new Date());
+		rootFunction.setParentId(0L);
+		rootFunction.setType("FN0");
+		sqlManager.insert(rootFunction,true);
+		Long parentId =rootFunction.getId();
+		
+		//设置曾删改查功能点
+		CoreFunction indexFunction = new CoreFunction();
+		indexFunction.setName("查询"+data.getDisplayName());
+		indexFunction.setCode(indexFunctonCode);
+		indexFunction.setCreateTime(new Date());
+		indexFunction.setParentId(parentId);
+		indexFunction.setAccessUrl("/"+urlBase+"/"+data.getCode()+"/index.do");
+		//设置为查询功能
+		indexFunction.setType("FN1");
+		sqlManager.insert(indexFunction,true);
+		
+		
+		CoreFunction  upateFunction = new CoreFunction();
+		String updateFunctonCode = functionCode+".edit";
+		upateFunction.setName("修改"+data.getDisplayName());
+		upateFunction.setCode(updateFunctonCode);
+		upateFunction.setCreateTime(new Date());
+		upateFunction.setParentId(parentId);
+		upateFunction.setType("FN0");
+		sqlManager.insert(upateFunction,true);
+		
+		CoreFunction  addFunction = new CoreFunction();
+		String addFunctionCode = functionCode+".add";
+		addFunction.setName("添加"+data.getDisplayName());
+		addFunction.setCode(addFunctionCode);
+		addFunction.setCreateTime(new Date());
+		addFunction.setParentId(parentId);
+		addFunction.setType("FN0");
+		sqlManager.insert(addFunction,true);
+		
+		
+		CoreFunction  delFunction = new CoreFunction();
+		String delFunctionCode = functionCode+".add";
+		delFunction.setName("删除"+data.getDisplayName());
+		delFunction.setCode(delFunctionCode);
+		delFunction.setCreateTime(new Date());
+		delFunction.setParentId(parentId);
+		delFunction.setType("FN0");
+		sqlManager.insert(addFunction,true);
+		
+		//刷新缓存
+		platformService.clearFunctionCache();
+		
+		return true;
+	}
+
 	
 	//根据类名提供一个变量名
 	private String getEntityCode(String s) {

@@ -208,6 +208,12 @@ public class CoreCodeGenController {
 
 		MdGen mdGen = new MdGen();
 		mdGen.make(target, entity);
+		
+		if(entity.isAutoAddFunction()) {
+			//自动增加功能点
+			this.codeGenService.insertFunction(entity, urlBase);
+		}
+		
 		return JsonResult.success();
 
 	}
@@ -313,6 +319,7 @@ public class CoreCodeGenController {
 		entity.setSystem(info.getSystem());
 		entity.setAttachment(data.entity.isAttachment());
 		entity.setIncludeExcel(data.entity.isIncludeExcel());
+		entity.setAutoAddFunction(info.isAutoAddFunction());
 		for (int i = 0; i < entity.getList().size(); i++) {
 		    Attribute attr = entity.getList().get(i);
 		    attr.setDisplayName(info.getList().get(i).getDisplayName());
