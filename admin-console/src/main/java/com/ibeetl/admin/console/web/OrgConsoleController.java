@@ -140,7 +140,7 @@ public class OrgConsoleController {
         boolean success = orgConsoleService.updateTemplate(org);
         if (success) {
         	platformService.clearOrgCache();
-        		return JsonResult.successMessage("保存成功");
+        	return JsonResult.successMessage("保存成功");
         } else {
             return JsonResult.failMessage("保存失败");
         }
@@ -162,10 +162,9 @@ public class OrgConsoleController {
         if (ids.endsWith(",")) {
             ids = StringUtils.substringBeforeLast(ids, ",");
         }
-
         List<Long> idList = ConvertUtil.str2longs(ids);
         orgConsoleService.deleteById(idList);
-
+        this.platformService.clearOrgCache();
         return new JsonResult().success();
     }
 

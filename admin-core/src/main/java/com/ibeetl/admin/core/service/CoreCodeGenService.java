@@ -107,7 +107,12 @@ public class CoreCodeGenService {
 		
 		return e;
 	}
-	
+	/**
+	 * 
+	 * @param data
+	 * @param urlBase
+	 * @return  增删改查中的查
+	 */
 	public Long insertFunction(Entity data,String urlBase){
 		String  preffix =  urlBase.replace('/', '.');
 		String functionCode = preffix+"."+data.getCode();
@@ -178,19 +183,21 @@ public class CoreCodeGenService {
 	public boolean insertMenu(Long functionId,Entity data,String urlBase){
 		CoreMenu query = new CoreMenu();
 		query.setCode("代码生成导航");
+		query.setType("MENU_N");
 		CoreMenu menu = this.sqlManager.templateOne(query);
 		if(menu==null) {
 			log.warn("未找到对应的父菜单:"+query.getCode());
 			return false ;
 		}
-		Long parentId = query.getId();
-		
+		Long parentId = menu.getId();
 		CoreMenu newMenu = new CoreMenu();
 		newMenu.setCode(data.getName()+".Manager");
 		newMenu.setName(data.getName()+"管理");
 		newMenu.setParentMenuId(parentId);
 		newMenu.setFunctionId(functionId);
 		newMenu.setType("MENU_M");
+		//任意设置一个顺序
+		newMenu.setSeq(3);
 		this.sqlManager.insert(newMenu);
 		this.platformService.clearMenuCache();
 		return true;

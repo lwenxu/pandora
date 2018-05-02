@@ -208,11 +208,15 @@ public class CoreCodeGenController {
 
 		MdGen mdGen = new MdGen();
 		mdGen.make(target, entity);
-		
-		if(entity.isAutoAddFunction()) {
+		if(entity.isAutoAddMenu()||entity.isAutoAddFunction()) {
 			//自动增加功能点
-			this.codeGenService.insertFunction(entity, urlBase);
+			long  functionId = this.codeGenService.insertFunction(entity, urlBase);
+			if(entity.isAutoAddMenu()) {
+				this.codeGenService.insertMenu(functionId, entity, urlBase);
+			}
 		}
+		
+		
 		
 		return JsonResult.success();
 
@@ -284,9 +288,6 @@ public class CoreCodeGenController {
 			String code = entry.getValue();
 			content.put(gen.getName(), code);
 		}
-		
-
-		
 		
 		return JsonResult.success(content);
 

@@ -81,7 +81,6 @@ public class OrgConsoleService extends BaseService<CoreOrg> {
         		throw new PlatformException("不能删除 "+child.getOrg().getName()+",还包含子机构");
         	}
         }
-
         return super.deleteById(ids);
     }
     
