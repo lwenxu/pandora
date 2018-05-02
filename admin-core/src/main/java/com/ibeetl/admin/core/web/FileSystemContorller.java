@@ -3,6 +3,7 @@ package com.ibeetl.admin.core.web;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,7 +60,7 @@ public class FileSystemContorller {
     @GetMapping(MODEL + "/download/{fileId}/{batchFileUUID}/{name}")
     public ModelAndView download(HttpServletResponse response,@PathVariable Long fileId,@PathVariable  String batchFileUUID ) throws IOException {
         FileItem item = fileService.getFileItemById(fileId,batchFileUUID);
-        response.setHeader("Content-Disposition", "attachment; filename="+item.getName());  
+        response.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(item.getName(),"UTF-8"));
         item.copy(response.getOutputStream());
         return null;
     }

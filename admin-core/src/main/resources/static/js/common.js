@@ -78,6 +78,16 @@ var Common = {
         });  
 		layer.full(index);  
     },
+    topOpenDlg:function(url,title){
+                   		var index = top.layer.open({
+                           type: 2,
+                           content: Common.ctxPath+url,
+                           title: title,
+                           area:['100%', '100%'],
+                           maxmin: false
+                       });
+               		layer.full(index);
+                   },
     openConfirm:function(content,callback,callBackNo){
     		var index = layer.confirm(content, {
     		  btn: ['确认','取消'] //按钮
