@@ -289,6 +289,7 @@ public class CoreCodeGenController {
 			content.put(gen.getName(), code);
 		}
 		
+		
 		return JsonResult.success(content);
 
 	}

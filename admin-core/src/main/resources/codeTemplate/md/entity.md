@@ -9,7 +9,7 @@ queryByCondition
     from ${entity.tableName} t
     where del_flag=0 
     \@//数据权限，该sql语句功能点  
-    #function("${entity.code}.query")#
+    and #function("${entity.code}.query")#
     @for(attr in entity.list){
     		@if(attr.showInQuery){
     \@if(!isEmpty(${attr.name})){

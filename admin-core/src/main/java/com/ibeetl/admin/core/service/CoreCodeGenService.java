@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.beetl.sql.core.JavaType;
@@ -218,7 +219,7 @@ public class CoreCodeGenService {
 	/*根据数据库注释来判断显示名称*/
 	private void setGetDisplayName(Attribute attr) {
 		String comment = attr.getComment();
-		if(comment==null) {
+		if(StringUtils.isEmpty(comment)) {
 			attr.setDisplayName(attr.getName());
 			return ;
 		}
