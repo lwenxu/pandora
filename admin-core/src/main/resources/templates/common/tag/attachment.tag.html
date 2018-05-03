@@ -137,8 +137,8 @@ function() {
             //文件下载地址
             var file = encodeURIComponent("http://" + window.location.host+"/core/file/download/"+fileId+"/${batchFileUUID}/"+fileName);
             //8012为预览服务器地址，参考 https://gitee.com/kekingcn/file-online-preview 安装
-            Common.openDlg("${env('file.previewURL')}?url="+file,fileName+"预览")
-            //window.open("http://localhost:8012/onlinePreview?url="+file);
+            Common.topOpenDlg("${env('file.previewURL')}?url="+file,fileName+"预览");
+            //window.open("${env('file.previewURL')}?url="+file,fileName+"预览");
            	return false;
         });
         
