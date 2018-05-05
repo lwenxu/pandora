@@ -1,40 +1,14 @@
-# springboot-plus
-一个基于SpringBoot 2 的管理后台系统,包含了用户管理，组织机构管理，角色管理，功能点管理，菜单管理，权限分配，数据权限分配，代码生成等功能
-
-系统基于Spring Boot2技术，前端采用了Layui2。数据库以MySQL为实例，理论上是跨数据库平台.
-
-基本技术栈来源于我为电子工业出版社编写的的[<<Spring Boot 2 精髓 >>](http://ibeetl.com/sb2/#more) (这本书每一章也有各种例子，但Springboot-plus 更偏向于应用而不是教学)
-
-当前版本:1.1.2
-
-技术交流群：219324263
-
-开源地址：https://gitee.com/xiandafu/springboot-plus
-
-视频介绍：https://pan.baidu.com/s/1dFPoaT7
-
-
-
-![doc/readme/user.png](doc/readme/user.png)
-![doc/readme/user.png](doc/readme/role.png)
-![doc/readme/user.png](doc/readme/data.png)
-![doc/readme/user.png](doc/readme/codePorject.png)
-![doc/readme/user.png](doc/readme/codeconfig.png)
-![doc/readme/user.png](doc/readme/codegen.png)
-![doc/readme/user.png](doc/readme/codegen2.png)
-![doc/readme/user.png](doc/readme/excelExport.png)
-
 # 1 使用说明
 
 ## 1.1 安装说明
 
-> 建议在彻底熟悉plus系统之前，先暂时不要修改其他配置选项，免得系统无法访问
+> 建议在彻底熟悉系统之前，先暂时不要修改其他配置选项，免得系统无法访问
 >
 > 本系统基于Spring Boot 2 ，因此请务必使用JDK8，且打开编译选项[parameters(点击了解parameters)](http://www.mamicode.com/info-detail-2162647.html),<u> 并重新编译工程，如果你没有使用Java8的 parameters 特性，系统不能正常使用</u>
 
 
 
-从Git上获取代码后，通过IDE导入此Maven工程，包含俩个子工程
+通过IDE导入此Maven工程，包含俩个子工程
 
 * admin-core  ，核心包，包含了缓存，数据权限，公用的JS和HTML页面。
 * admin-console, 系统管理功能，包含了用户，组织机构，角色，权限，数据权限，代码生成等管理功能
@@ -50,6 +24,8 @@ spring.datasource.password=123456
 
 ~~~
 
+创建starter数据库，把doc中的sql脚本运行一下，生成数据库
+
 运行CosonleApplication，然后访问http://127.0.0.1:8080/  输入admin/123456 则可以直接登录进入管理系统
 
 如果成功启动后运行报错：变量userId未定义，位于第6行，那是因为你没有启用[parameters](http://www.mamicode.com/info-detail-2162647.html)，启用后，需要重新build整个工程
@@ -58,7 +34,7 @@ spring.datasource.password=123456
 
 ## 1.2 创建子系统
 
-SpringBoot-plus 是一个适合大系统拆分成小系统的架构，或者是一个微服务系统，因此，如果你需要创建自己的业务系统，比如，一个CMS子系统，建议你不要在SpringBoot-Plus 添加代码，应该是新建立一个maven工程，依赖admin-core，或者依赖admin-console（如果你有后台管理需求，通常都有，但不是必须的）
+SpringBoot适合大系统拆分成小系统的架构，或者是一个微服务系统，因此，如果你需要创建自己的业务系统，比如，一个CMS子系统，建议你不要在SpringBoot-Plus 添加代码，应该是新建立一个maven工程，依赖admin-core，或者依赖admin-console（如果你有后台管理需求，通常都有，但不是必须的）
 
 创建子系统，可以进入代码生成>子系统生成， 输入maven项目路径，还有包名，就可以直接生成一个可运行的基于SpringBoot-Plus 的子系统,所有代码可以在这些完成
 

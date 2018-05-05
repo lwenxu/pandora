@@ -3,3 +3,4 @@ admin-console/target/*
 .*
 !.gitignore
 *.iml
+.idea
