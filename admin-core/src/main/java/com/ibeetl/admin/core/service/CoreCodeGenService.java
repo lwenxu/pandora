@@ -79,6 +79,7 @@ public class CoreCodeGenService {
 		Set<String> cols = tableDesc.getCols();
 		ArrayList<Attribute> attrs = new ArrayList<Attribute>();
 		int i=1;
+		//TODO::代码有问题   对于idAttribute是不明确的  可能模板里面出现这个属性为null的情况
 		for(String col:cols) {
 			ColDesc desc = tableDesc.getColDesc(col);
 			Attribute attr = new Attribute();

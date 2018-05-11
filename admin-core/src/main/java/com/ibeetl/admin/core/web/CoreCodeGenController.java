@@ -59,6 +59,7 @@ public class CoreCodeGenController {
 		ModelAndView view = new ModelAndView("/core/codeGen/edit.html");
 		Entity entity = codeGenService.getEntityInfo(table);
 		view.addObject("entity", entity);
+		System.out.println(entity);
 		return view;
 
 	}
