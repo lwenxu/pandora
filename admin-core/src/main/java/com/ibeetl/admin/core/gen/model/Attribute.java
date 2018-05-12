@@ -77,5 +77,19 @@ public class Attribute {
 	public void setVerifyList(List<Verify> verifyList) {
 		this.verifyList = verifyList;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Attribute{" +
+				"name='" + name + '\'' +
+				", colName='" + colName + '\'' +
+				", javaType='" + javaType + '\'' +
+				", displayName='" + displayName + '\'' +
+				", isId=" + isId +
+				", showInQuery=" + showInQuery +
+				", dictType='" + dictType + '\'' +
+				", comment='" + comment + '\'' +
+				", verifyList=" + verifyList +
+				'}';
+	}
 }

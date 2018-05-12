@@ -114,5 +114,24 @@ public class Entity {
 	public void setAutoAddMenu(boolean autoAddMenu) {
 		this.autoAddMenu = autoAddMenu;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "Entity{" +
+				"name='" + name + '\'' +
+				", tableName='" + tableName + '\'' +
+				", code='" + code + '\'' +
+				", displayName='" + displayName + '\'' +
+				", list=" + list +
+				", idAttribute=" + idAttribute +
+				", nameAttribute=" + nameAttribute +
+				", comment='" + comment + '\'' +
+				", system='" + system + '\'' +
+				", includeExcel=" + includeExcel +
+				", attachment=" + attachment +
+				", autoAddFunction=" + autoAddFunction +
+				", autoAddMenu=" + autoAddMenu +
+				'}';
+	}
 }

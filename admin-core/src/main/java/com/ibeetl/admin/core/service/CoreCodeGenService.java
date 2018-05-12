@@ -1,9 +1,6 @@
 package com.ibeetl.admin.core.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -79,18 +76,18 @@ public class CoreCodeGenService {
 		Set<String> cols = tableDesc.getCols();
 		ArrayList<Attribute> attrs = new ArrayList<Attribute>();
 		int i=1;
-		//TODO::代码有问题   对于idAttribute是不明确的  可能模板里面出现这个属性为null的情况
 		for(String col:cols) {
 			ColDesc desc = tableDesc.getColDesc(col);
 			Attribute attr = new Attribute();
 			attr.setColName(col);
 			attr.setName(nc.getPropertyName(col));
-			if(tableDesc.getIdNames().contains(col)) {
-				//TODO,代码生成实际上用了一个Id，因此具备联合主键的，不应该生成代码
+		    //TODO::代码有问题   对于idAttribute是不明确的  可能模板里面出现这个属性为null的情况  修复了这个bug采用的直接注释 if 后期可能有问题
+            //TODO,代码生成实际上用了一个Id，因此具备联合主键的，不应该生成代码,联合主键目前没有在考虑范围之内
+            if(tableDesc.getIdNames().contains(col)) {
 				attr.setId(true);
-				e.setIdAttribute(attr);
 			}
-			attr.setComment(desc.remark);
+            e.setIdAttribute(attr);
+            attr.setComment(desc.remark);
 			String type = JavaType.getType(desc.sqlType, desc.size, desc.digit);
 			if(type.equals("Double")){
 				type = "BigDecimal";

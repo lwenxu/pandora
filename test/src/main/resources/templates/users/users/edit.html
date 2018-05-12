@@ -1,0 +1,30 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/users/users/"}){ -->
+
+<form class="layui-form layui-form-pane" id="updateForm">
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">id</label>
+				<div class="layui-input-inline">
+					<input type="text" id="id" name="id"  value="${users.id}"   class="layui-input" >
+				</div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">name</label>
+				<div class="layui-input-inline">
+					<input type="text" id="name" name="name"  value="${users.name}"   class="layui-input" >
+				</div>
+            </div>
+        </div>
+    </div>
+	<!-- 业务对象须有hidden字段，保存delFlag和version字段-->
+    <input type="hidden" name="gender" value=${users.gender} />
+    <layui:submitButtons id="updateButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['edit'], function(){
+    var usersEdit = layui.edit
+    usersEdit.init();
+});
+</script>
