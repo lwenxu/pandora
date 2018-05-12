@@ -75,9 +75,9 @@ public class UsersController{
     @GetMapping(MODEL + "/edit.do")
     @Function("users.edit")
     @ResponseBody
-    public ModelAndView edit(String gender) {
+    public ModelAndView edit(Integer id) {
         ModelAndView view = new ModelAndView("/users/users/edit.html");
-        Users users = usersService.queryById(gender);
+        Users users = usersService.queryById(id);
         view.addObject("users", users);
         return view;
     }
@@ -128,8 +128,8 @@ public class UsersController{
     @GetMapping(MODEL + "/view.json")
     @Function("users.query")
     @ResponseBody
-    public JsonResult<Users>queryInfo(String gender) {
-        Users users = usersService.queryById( gender);
+    public JsonResult<Users>queryInfo(Integer id) {
+        Users users = usersService.queryById( id);
         return  JsonResult.success(users);
     }
 

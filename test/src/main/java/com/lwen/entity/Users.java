@@ -34,17 +34,17 @@ public class Users extends BaseEntity{
 
     private Integer id ;
 	
-    @NotNull(message = "ID不能为空", groups =ValidateConfig.UPDATE.class)
-    @SeqID(name = ORACLE_CORE_SEQ_NAME)
-    @AutoID	
 
     private String name ;
 	
-    @NotNull(message = "ID不能为空", groups =ValidateConfig.UPDATE.class)
-    @SeqID(name = ORACLE_CORE_SEQ_NAME)
-    @AutoID	
 
     private String gender ;
+	
+	/*逻辑删除标志*/
+	@InsertIgnore
+	@LogicDelete(value = 1)
+
+    private Integer delFlag ;
 	
     public Users()
     {
@@ -71,5 +71,20 @@ public class Users extends BaseEntity{
         this.gender = gender;
     }
 
+    public Integer getDelFlag(){
+	    return  delFlag;
+    }
+    public void setDelFlag(Integer delFlag){
+        this.delFlag = delFlag;
+    }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", delFlag=" + delFlag +
+                '}';
+    }
 }

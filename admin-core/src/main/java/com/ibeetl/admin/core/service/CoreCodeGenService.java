@@ -85,8 +85,8 @@ public class CoreCodeGenService {
             //TODO,代码生成实际上用了一个Id，因此具备联合主键的，不应该生成代码,联合主键目前没有在考虑范围之内
             if(tableDesc.getIdNames().contains(col)) {
 				attr.setId(true);
-			}
-            e.setIdAttribute(attr);
+                e.setIdAttribute(attr);
+            }
             attr.setComment(desc.remark);
 			String type = JavaType.getType(desc.sqlType, desc.size, desc.digit);
 			if(type.equals("Double")){

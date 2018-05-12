@@ -8,21 +8,21 @@ import java.util.Date;
  *Users查询
  */
 public class UsersQuery extends PageParam {
-    @Query(name = "id", display = true)        
-    private Integer id;
     @Query(name = "name", display = true)        
     private String name;
-    public Integer getId(){
-        return  id;
-    }
-    public void setId(Integer id ){
-        this.id = id;
-    }
+    @Query(name = "gender", display = true)        
+    private String gender;
     public String getName(){
         return  name;
     }
     public void setName(String name ){
         this.name = name;
+    }
+    public String getGender(){
+        return  gender;
+    }
+    public void setGender(String gender ){
+        this.gender = gender;
     }
  
 }

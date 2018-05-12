@@ -42,7 +42,7 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
 
                     field : 'gender', 
                         title : 'gender',
-                }
+                },
 
         ] ]
 
@@ -72,7 +72,7 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
                     if(data==null){
                         return ;
                     }
-                    var url = "/users/users/edit.do?gender="+data.gender;
+                    var url = "/users/users/edit.do?id="+data.id;
                     Common.openDlg(url,"Users管理>"+data.id+">编辑");
                 },
                 del : function() {

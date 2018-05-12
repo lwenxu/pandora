@@ -4,21 +4,26 @@
     <div class="layui-row">
         <div class="layui-form-item">
             <div class="layui-inline">
-            <label class="layui-form-label">id</label>
-				<div class="layui-input-inline">
-					<input type="text" id="id" name="id"  value="${users.id}"   class="layui-input" >
-				</div>
-            </div>
-            <div class="layui-inline">
             <label class="layui-form-label">name</label>
 				<div class="layui-input-inline">
 					<input type="text" id="name" name="name"  value="${users.name}"   class="layui-input" >
 				</div>
             </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">gender</label>
+				<div class="layui-input-inline">
+					<input type="text" id="gender" name="gender"  value="${users.gender}"   class="layui-input" >
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
         </div>
     </div>
 	<!-- 业务对象须有hidden字段，保存delFlag和version字段-->
-    <input type="hidden" name="gender" value=${users.gender} />
+	<input type="hidden" name="delFlag" value=${users.delFlag} />
+    <input type="hidden" name="id" value=${users.id} />
     <layui:submitButtons id="updateButton" />
 </form>
 <!--#} -->

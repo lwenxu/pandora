@@ -10,7 +10,7 @@ layui.define(['table', 'usersApi'], function(exports) {
                 return ;
             }
             Common.openConfirm("确认要删除这些Users?",function(){
-            var ids =Common.concatBatchId(data,"gender");
+            var ids =Common.concatBatchId(data,"id");
             usersApi.del(ids,function(){
                 Common.info("删除成功");
                     dataReload();
