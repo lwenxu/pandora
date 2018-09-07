@@ -1,14 +1,11 @@
 package com.ibeetl.admin.core.util.beetl;
 
+import com.ibeetl.admin.core.rbac.tree.OrgItem;
+import com.ibeetl.admin.core.service.CorePlatformService;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.ibeetl.admin.core.rbac.tree.OrgItem;
-import com.ibeetl.admin.core.service.CorePlatformService;
-
-import java.util.List;
 
 /**
  * 通过orgId获取orgName,从缓存中获取
@@ -19,7 +16,7 @@ import java.util.List;
 public class OrgFunction implements Function {
 
 	@Autowired
-	CorePlatformService platFormService;
+    CorePlatformService platFormService;
 	
 	
 	public Object call(Object[] paras, Context ctx) {

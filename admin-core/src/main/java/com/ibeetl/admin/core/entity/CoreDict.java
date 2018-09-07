@@ -5,13 +5,12 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.beetl.sql.core.annotatoin.AssignID;
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.ibeetl.admin.core.util.ValidateConfig;
 
 /**
  * 描述: 字典

@@ -1,18 +1,14 @@
 package com.ibeetl.admin.core.entity;
 
 import java.util.Date;
-import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ibeetl.admin.core.util.ValidateConfig;
 
 
 public class CoreAudit extends BaseEntity  {

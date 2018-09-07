@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.ibeetl.admin.core.conf.PasswordConfig;
+import com.ibeetl.admin.core.rbac.UserLoginInfo;
+import com.ibeetl.admin.core.rbac.tree.FunctionItem;
+import com.ibeetl.admin.core.rbac.tree.MenuItem;
+import com.ibeetl.admin.core.rbac.tree.OrgItem;
+import com.ibeetl.admin.core.web.dto.FunctionNodeView;
+import com.ibeetl.admin.core.web.dto.MenuNodeView;
+import com.ibeetl.admin.core.web.dto.SystemMenuView;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +19,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ibeetl.admin.core.conf.PasswordConfig.PasswordEncryptService;
 import com.ibeetl.admin.core.entity.CoreOrg;
 import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.rbac.UserLoginInfo;
-import com.ibeetl.admin.core.rbac.tree.FunctionItem;
-import com.ibeetl.admin.core.rbac.tree.MenuItem;
-import com.ibeetl.admin.core.rbac.tree.OrgItem;
 import com.ibeetl.admin.core.service.CorePlatformService;
 import com.ibeetl.admin.core.service.CoreUserService;
 import com.ibeetl.admin.core.util.HttpRequestLocal;
-import com.ibeetl.admin.core.web.dto.FunctionNodeView;
-import com.ibeetl.admin.core.web.dto.MenuNodeView;
-import com.ibeetl.admin.core.web.dto.SystemMenuView;
 
 @Controller
 @SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class CoreUserController {
 
 	
 	@Autowired
-	PasswordEncryptService passwordEncryptService ;
+    PasswordConfig.PasswordEncryptService passwordEncryptService ;
 
 	@PostMapping(MODEL + "/login.json")
 	@ResponseBody

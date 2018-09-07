@@ -1,9 +1,8 @@
 package com.ibeetl.admin.core.gen;
 
+import com.ibeetl.admin.core.gen.model.Entity;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
-
-import com.ibeetl.admin.core.gen.model.Entity;
 
 public class HtmlGen  implements AutoGen{
 

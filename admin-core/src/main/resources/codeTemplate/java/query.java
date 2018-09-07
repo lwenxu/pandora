@@ -1,9 +1,7 @@
 package ${package};
 
-import com.ibeetl.admin.core.annotation.Query;
-import com.ibeetl.admin.core.util.enums.CoreDictType;
-import com.ibeetl.admin.core.web.query.PageParam;
-import java.util.Date;
+import com.lamp.core.annotation.Query;
+
 /**
  *${entity.displayName}查询
  */

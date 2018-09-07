@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ibeetl.admin.core.annotation.Dict;
 import org.beetl.sql.core.SQLManager;
 import org.beetl.sql.core.TailBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ibeetl.admin.core.annotation.Dict;
 import com.ibeetl.admin.core.entity.CoreDict;
 import com.ibeetl.admin.core.util.PlatformException;
 import com.ibeetl.admin.core.util.enums.DelFlagEnum;

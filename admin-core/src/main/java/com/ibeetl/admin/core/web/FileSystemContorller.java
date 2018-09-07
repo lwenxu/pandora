@@ -7,6 +7,9 @@ import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.ibeetl.admin.core.file.FileItem;
+import com.ibeetl.admin.core.file.FileService;
+import com.ibeetl.admin.core.util.FileUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ibeetl.admin.core.entity.CoreOrg;
 import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.file.FileItem;
-import com.ibeetl.admin.core.file.FileService;
 import com.ibeetl.admin.core.service.CorePlatformService;
-import com.ibeetl.admin.core.util.FileUtil;
 
 @Controller
 public class FileSystemContorller {
@@ -69,7 +69,7 @@ public class FileSystemContorller {
 	/*execl 导入导出*/
 	
 	@Autowired
-	FileService fileService;
+    FileService fileService;
 	@GetMapping(MODEL + "/get.do")
 	public ModelAndView index(HttpServletResponse response,String id) throws IOException {
 	     String path = id;

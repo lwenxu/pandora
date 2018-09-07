@@ -12,7 +12,7 @@ public class OrgBuildUtil {
 	}
 	
 	
-	public static void buildTreeNode(OrgItem parent,List<CoreOrg> list){
+	public static void buildTreeNode(OrgItem parent, List<CoreOrg> list){
 		
 	
 		

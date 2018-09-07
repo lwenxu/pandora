@@ -5,8 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.ibeetl.admin.core.util.enums.CoreDictType;
-
 /**
  * 描述: 用来标注词典字段
  * 

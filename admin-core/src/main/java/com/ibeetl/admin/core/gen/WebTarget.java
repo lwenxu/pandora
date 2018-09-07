@@ -8,7 +8,7 @@ import com.ibeetl.admin.core.gen.model.Entity;
 public class WebTarget extends  MavenProjectTarget {
 	
 	public Map<Object,String> map = new HashMap<Object,String>();
-	public WebTarget(Entity entity,String basePackage) {
+	public WebTarget(Entity entity, String basePackage) {
 		super(entity,basePackage);
 	}
 	

@@ -2,14 +2,12 @@ package com.ibeetl.admin.core.util.beetl;
 
 import java.util.List;
 
+import com.ibeetl.admin.core.rbac.tree.FunctionItem;
+import com.ibeetl.admin.core.service.CorePlatformService;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.ibeetl.admin.core.rbac.tree.FunctionItem;
-import com.ibeetl.admin.core.rbac.tree.OrgItem;
-import com.ibeetl.admin.core.service.CorePlatformService;
 
 /**
  * 手工构造一个功能树，书上包含模块，功能，按钮
@@ -20,7 +18,7 @@ import com.ibeetl.admin.core.service.CorePlatformService;
 public class SysFunctionTreeFunction implements Function {
 
 	@Autowired
-	CorePlatformService platFormService;
+    CorePlatformService platFormService;
 	
 	
 	public Object call(Object[] paras, Context ctx) {

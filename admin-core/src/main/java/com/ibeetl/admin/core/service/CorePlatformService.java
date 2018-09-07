@@ -6,6 +6,10 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import com.ibeetl.admin.core.rbac.DataAccessFactory;
+import com.ibeetl.admin.core.rbac.tree.FunctionItem;
+import com.ibeetl.admin.core.rbac.tree.MenuItem;
+import com.ibeetl.admin.core.rbac.tree.OrgItem;
 import org.beetl.sql.core.SQLManager;
 import org.beetl.sql.core.engine.SQLPlaceholderST;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +28,6 @@ import com.ibeetl.admin.core.entity.CoreMenu;
 import com.ibeetl.admin.core.entity.CoreOrg;
 import com.ibeetl.admin.core.entity.CoreRoleFunction;
 import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.rbac.DataAccessFactory;
-import com.ibeetl.admin.core.rbac.tree.FunctionItem;
-import com.ibeetl.admin.core.rbac.tree.MenuItem;
-import com.ibeetl.admin.core.rbac.tree.OrgItem;
 import com.ibeetl.admin.core.util.FunctionBuildUtil;
 import com.ibeetl.admin.core.util.HttpRequestLocal;
 import com.ibeetl.admin.core.util.MenuBuildUtil;

@@ -1,10 +1,6 @@
 package com.ibeetl.admin.core.file;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.ibeetl.admin.core.dao.CoreFileDao;
 import com.ibeetl.admin.core.entity.CoreFile;

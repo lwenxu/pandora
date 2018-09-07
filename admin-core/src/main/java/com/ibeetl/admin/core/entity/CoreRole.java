@@ -5,12 +5,11 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.ibeetl.admin.core.annotation.Dict;
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibeetl.admin.core.annotation.Dict;
-import com.ibeetl.admin.core.util.ValidateConfig;
 import com.ibeetl.admin.core.util.enums.CoreDictType;
 
 /**

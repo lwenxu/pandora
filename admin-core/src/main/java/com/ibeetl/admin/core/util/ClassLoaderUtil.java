@@ -1,9 +1,8 @@
 package com.ibeetl.admin.core.util;
 
+import com.ibeetl.admin.core.conf.RbacAnnotationConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.ibeetl.admin.core.conf.RbacAnnotationConfig;
 
 public class ClassLoaderUtil {
 	private ClassLoaderUtil(){

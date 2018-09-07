@@ -11,5 +11,4 @@ import com.ibeetl.admin.core.entity.CoreAudit;
 */
 @SqlResource("core.coreAudit")
 public interface CoreAuditDao extends BaseMapper<CoreAudit> {
-	
 }

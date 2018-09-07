@@ -3,7 +3,6 @@ package com.ibeetl.admin.core.rbac;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.ibeetl.admin.core.entity.CoreOrg;
 import com.ibeetl.admin.core.entity.CoreUser;
 

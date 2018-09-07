@@ -1,6 +1,5 @@
 package com.ibeetl.admin.core.rbac;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ibeetl.admin.core.rbac.tree.OrgItem;

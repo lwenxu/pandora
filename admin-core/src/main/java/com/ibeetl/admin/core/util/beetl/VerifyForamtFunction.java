@@ -2,10 +2,9 @@ package com.ibeetl.admin.core.util.beetl;
 
 import java.util.List;
 
+import com.ibeetl.admin.core.gen.model.Verify;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
-
-import com.ibeetl.admin.core.gen.model.Verify;
 
 /**
  * 格式化校验集合

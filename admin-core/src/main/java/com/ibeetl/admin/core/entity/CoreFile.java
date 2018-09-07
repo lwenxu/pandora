@@ -1,15 +1,11 @@
 package com.ibeetl.admin.core.entity;
 
 import java.util.Date;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
-import com.ibeetl.admin.core.util.ValidateConfig;
-import org.beetl.sql.core.TailBean;
-import java.math.*;
-import com.ibeetl.admin.core.entity.BaseEntity;
 
 /* 
 * 

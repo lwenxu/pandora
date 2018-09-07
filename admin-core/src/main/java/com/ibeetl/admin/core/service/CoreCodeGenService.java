@@ -2,6 +2,8 @@ package com.ibeetl.admin.core.service;
 
 import java.util.*;
 
+import com.ibeetl.admin.core.gen.model.Attribute;
+import com.ibeetl.admin.core.gen.model.Entity;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,8 +19,6 @@ import org.springframework.stereotype.Service;
 
 import com.ibeetl.admin.core.entity.CoreFunction;
 import com.ibeetl.admin.core.entity.CoreMenu;
-import com.ibeetl.admin.core.gen.model.Attribute;
-import com.ibeetl.admin.core.gen.model.Entity;
 
 /**
  * 代码生成，用于根据表或者视图生成entity，mapper，service，conroller

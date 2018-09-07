@@ -6,12 +6,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
+import com.ibeetl.admin.core.annotation.Dict;
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibeetl.admin.core.annotation.Dict;
-import com.ibeetl.admin.core.util.ValidateConfig;
 import com.ibeetl.admin.core.util.enums.CoreDictType;
 
 /*
@@ -23,7 +23,7 @@ public class CoreUser extends BaseEntity  {
 
 	
 
-	@NotNull(message = "ID不能为空", groups =ValidateConfig. UPDATE.class)
+	@NotNull(message = "ID不能为空", groups = ValidateConfig.UPDATE.class)
 	@SeqID(name = ORACLE_CORE_SEQ_NAME)
 	@AutoID
 	protected Long id;

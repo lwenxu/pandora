@@ -1,21 +1,13 @@
 package ${package};
 
-import java.util.Date;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
-import com.ibeetl.admin.core.util.ValidateConfig;
+import com.lamp.core.util.ValidateConfig;
 
-import org.beetl.sql.core.TailBean;
-import java.math.*;
-
-import com.ibeetl.admin.core.annotation.Dict;
-import com.ibeetl.admin.core.entity.BaseEntity;
+import com.lamp.core.annotation.Dict;
 
 import org.beetl.sql.core.annotatoin.InsertIgnore;
 import org.beetl.sql.core.annotatoin.Version;

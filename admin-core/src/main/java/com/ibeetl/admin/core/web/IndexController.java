@@ -5,6 +5,8 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.ibeetl.admin.core.rbac.UserLoginInfo;
+import com.ibeetl.admin.core.rbac.tree.MenuItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ibeetl.admin.core.entity.CoreOrg;
 import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.rbac.UserLoginInfo;
-import com.ibeetl.admin.core.rbac.tree.MenuItem;
 import com.ibeetl.admin.core.service.CorePlatformService;
 import com.ibeetl.admin.core.service.CoreUserService;
 import com.ibeetl.admin.core.util.HttpRequestLocal;

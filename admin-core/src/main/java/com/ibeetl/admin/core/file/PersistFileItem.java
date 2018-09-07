@@ -1,7 +1,5 @@
 package com.ibeetl.admin.core.file;
 
-import java.io.OutputStream;
-
 public abstract class PersistFileItem extends FileItem {
     protected Long id;
     protected Long userId;

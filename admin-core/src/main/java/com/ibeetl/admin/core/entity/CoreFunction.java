@@ -4,13 +4,12 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.beetl.sql.core.annotatoin.AutoID;
-import org.beetl.sql.core.annotatoin.SeqID;
-import org.beetl.sql.core.annotatoin.UpdateIgnore;
-
 import com.ibeetl.admin.core.annotation.Dict;
 import com.ibeetl.admin.core.util.ValidateConfig;
 import com.ibeetl.admin.core.util.enums.CoreDictType;
+import org.beetl.sql.core.annotatoin.AutoID;
+import org.beetl.sql.core.annotatoin.SeqID;
+import org.beetl.sql.core.annotatoin.UpdateIgnore;
 
 
 public class CoreFunction extends BaseEntity   {
@@ -30,7 +29,7 @@ public class CoreFunction extends BaseEntity   {
 	private String name ;
 	@NotBlank
 	private Long parentId ;
-	@Dict(type=CoreDictType.FUNCTION_TYPE)
+	@Dict(type= CoreDictType.FUNCTION_TYPE)
 	@NotBlank
 	private String type ="FN0" ;
 	

@@ -1,12 +1,11 @@
 package com.ibeetl.admin.core.conf;
 
+import com.ibeetl.admin.core.rbac.DataAccessFactory;
+import com.ibeetl.admin.core.rbac.da.DefaultDataAccessFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.ibeetl.admin.core.rbac.DataAccessFactory;
-import com.ibeetl.admin.core.rbac.da.DefaultDataAccessFactory;
 
 @Configuration
 public class RbacDataAccessConfig {

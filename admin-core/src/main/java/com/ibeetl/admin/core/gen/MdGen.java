@@ -1,15 +1,8 @@
 package com.ibeetl.admin.core.gen;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.ibeetl.admin.core.gen.model.Entity;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
-
-import com.ibeetl.admin.core.gen.model.Attribute;
-import com.ibeetl.admin.core.gen.model.Entity;
 
 public class MdGen  implements AutoGen{
 

@@ -1,7 +1,5 @@
 package com.ibeetl.admin.core.rbac;
 
-import com.ibeetl.admin.core.service.CorePlatformService;
-
 /**
  * 数据权限接口类
  * @author Administrator

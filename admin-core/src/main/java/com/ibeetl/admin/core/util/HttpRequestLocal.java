@@ -5,9 +5,8 @@ import java.net.UnknownHostException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Component;
-
 import com.ibeetl.admin.core.conf.MVCConf;
+import org.springframework.stereotype.Component;
 
 /**
  *  保留用户会话，以方便在业务代码任何地方调用

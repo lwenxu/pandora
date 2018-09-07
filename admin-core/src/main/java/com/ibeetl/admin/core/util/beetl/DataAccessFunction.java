@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ibeetl.admin.core.entity.CoreRoleFunction;
+import com.ibeetl.admin.core.entity.CoreUser;
+import com.ibeetl.admin.core.rbac.DataAccess;
+import com.ibeetl.admin.core.rbac.DataAccessFactory;
+import com.ibeetl.admin.core.rbac.DataAccessResullt;
+import com.ibeetl.admin.core.service.CorePlatformService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.beetl.core.Context;
@@ -12,12 +18,6 @@ import org.beetl.sql.core.engine.SQLParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ibeetl.admin.core.entity.CoreRoleFunction;
-import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.rbac.DataAccess;
-import com.ibeetl.admin.core.rbac.DataAccessFactory;
-import com.ibeetl.admin.core.rbac.DataAccessResullt;
-import com.ibeetl.admin.core.service.CorePlatformService;
 import com.ibeetl.admin.core.util.FunctionLocal;
 
 /**
@@ -31,9 +31,9 @@ public class DataAccessFunction implements Function {
 	Log log = LogFactory.getLog(DataAccessFunction.class);
 	
 	@Autowired
-	CorePlatformService platFormService;
+    CorePlatformService platFormService;
 	@Autowired
-	DataAccessFactory dataAccessFactory;
+    DataAccessFactory dataAccessFactory;
 	
 	private static Map defaultTargets = new HashMap();
 	static{
@@ -48,7 +48,7 @@ public class DataAccessFunction implements Function {
 	
 	public Object call(Object[] paras, Context ctx){
 		//项目初期，总是返回1==1，避免数据权限带来的麻烦 
-		CoreUser user = platFormService.getCurrentUser(); 
+		CoreUser user = platFormService.getCurrentUser();
 		//{"org":"org_id","user","user_id"}
 		Map targets  = this.defaultTargets;
 		//用户调用conroller 结果"user.view"

@@ -4,15 +4,11 @@ package com.ibeetl.admin.core.util.beetl;
 import java.util.List;
 import java.util.Map;
 
+import com.ibeetl.admin.core.annotation.Query;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
-import org.beetl.ext.simulate.JsonUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ibeetl.admin.core.annotation.Query;
 import com.ibeetl.admin.core.util.AnnotationUtil;
 
 /**

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ibeetl.admin.core.rbac.DataAccess;
+import com.ibeetl.admin.core.rbac.DataAccessFactory;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
 import org.beetl.core.GroupTemplate;
@@ -19,8 +21,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ibeetl.admin.core.rbac.DataAccess;
-import com.ibeetl.admin.core.rbac.DataAccessFactory;
 import com.ibeetl.admin.core.service.CorePlatformService;
 import com.ibeetl.admin.core.util.beetl.DictQueryFunction;
 import com.ibeetl.admin.core.util.beetl.FileFunction;

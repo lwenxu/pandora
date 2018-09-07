@@ -16,7 +16,7 @@ public class FunctionBuildUtil {
 	private  FunctionBuildUtil(){
 		
 	}
-	public static  FunctionItem buildOrgTree(List<CoreFunction> list){
+	public static FunctionItem buildOrgTree(List<CoreFunction> list){
 		CoreFunction root = new CoreFunction();
 		root.setId(0L);
 		FunctionItem rootOrg = new  FunctionItem(root);
