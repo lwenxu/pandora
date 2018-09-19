@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ibeetl.admin.console.dao.UserConsoleDao;
+import com.ibeetl.admin.console.dao.UserDao;
 import com.ibeetl.admin.console.exception.DeletedException;
 import com.ibeetl.admin.console.exception.NoResourceException;
 import com.ibeetl.admin.console.web.dto.UserExcelExportData;
@@ -32,10 +32,10 @@ import com.ibeetl.admin.core.util.enums.GeneralStateEnum;
 
 @Service
 @Transactional
-public class UserConsoleService extends BaseService<CoreUser> {
+public class UserService extends BaseService<CoreUser> {
 
 	@Autowired
-	UserConsoleDao userDao;
+	UserDao userDao;
 	
 	
 	@Autowired

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibeetl.admin.console.service.OrgConsoleService;
-import com.ibeetl.admin.console.service.UserConsoleService;
+import com.ibeetl.admin.console.service.UserService;
 import com.ibeetl.admin.console.web.query.OrgQuery;
 import com.ibeetl.admin.console.web.query.OrgUserQuery;
 import com.ibeetl.admin.core.annotation.Function;
@@ -44,7 +44,7 @@ public class OrgConsoleController {
     private OrgConsoleService orgConsoleService;
     
     @Autowired
-    UserConsoleService userConsoleService;
+    UserService userService;
 
     @Autowired
     CorePlatformService platformService;
@@ -174,7 +174,7 @@ public class OrgConsoleController {
     @ResponseBody
     public JsonResult<PageQuery<CoreUser>> getUsers(OrgUserQuery userQuery) {
     	 PageQuery<CoreUser> page = userQuery.getPageQuery();
-         userConsoleService.queryByCondtion(page);
+         userService.queryByCondtion(page);
          return JsonResult.success(page);
     }
    

@@ -8,11 +8,13 @@ import org.beetl.sql.core.mapper.BaseMapper;
 import com.ibeetl.admin.core.entity.CoreUser;
 import com.ibeetl.admin.core.entity.CoreUserRole;
 import com.ibeetl.admin.core.util.enums.GeneralStateEnum;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @SqlResource("console.user")
-public interface UserConsoleDao extends BaseMapper<CoreUser> {
+@Repository
+public interface UserDao extends BaseMapper<CoreUser> {
 
     PageQuery<CoreUser> queryByCondtion(@Param("query") PageQuery<CoreUser> query);
 

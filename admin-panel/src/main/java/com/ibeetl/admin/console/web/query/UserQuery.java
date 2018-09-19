@@ -2,6 +2,9 @@ package com.ibeetl.admin.console.web.query;
 
 import java.util.Date;
 
+import com.ibeetl.admin.console.constant.SortType;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ibeetl.admin.core.annotation.Query;
@@ -20,7 +23,15 @@ public class UserQuery extends PageParam {
 	
 	@Query(name="状态",display=true,type=Query.TYPE_DICT,dict=CoreDictType.USER_STATE)
 	private String state;
-	
+
+	@Query(name="排序")
+	private String sorter;
+
+	@Getter@Setter
+	private String sortField;
+	@Getter@Setter
+	private String sortType;
+
 	@Query(name="职务",display=true,type=Query.TYPE_DICT,dict="job_type",group="job_type")
 	private String jobType0;
 	
@@ -49,6 +60,20 @@ public class UserQuery extends PageParam {
 	public Long getOrgId() {
 		return orgId;
 	}
+
+	public void setSorter(String sorter) {
+		this.sorter = sorter;
+		if (StringUtils.isNotEmpty(sorter)) {
+			String[] arr = sorter.split("_");
+			this.sortField = arr[0];
+			this.sortType = arr[1].equals("descend") ? SortType.DESC : SortType.ASC;
+		}
+	}
+
+	public String getSorter() {
+		return sorter;
+	}
+
 	public void setOrgId(Long orgId) {
 		this.orgId = orgId;
 	}

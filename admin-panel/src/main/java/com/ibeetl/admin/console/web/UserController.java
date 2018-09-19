@@ -9,6 +9,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.ibeetl.admin.console.web.query.BatchStatusQuery;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.beetl.sql.core.engine.PageQuery;
@@ -24,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ibeetl.admin.console.service.OrgConsoleService;
 import com.ibeetl.admin.console.service.RoleConsoleService;
-import com.ibeetl.admin.console.service.UserConsoleService;
+import com.ibeetl.admin.console.service.UserService;
 import com.ibeetl.admin.console.web.dto.UserExcelExportData;
 import com.ibeetl.admin.console.web.query.UserQuery;
 import com.ibeetl.admin.console.web.query.UserRoleQuery;
@@ -48,12 +51,12 @@ import com.ibeetl.admin.core.web.JsonResult;
  * @author xiandafu
  */
 @Controller
-public class UserConsoleController {
+public class UserController {
 	private final Log log = LogFactory.getLog(this.getClass());
 	private static final String MODEL = "/admin/user";
 
 	@Autowired
-	UserConsoleService userConsoleService;
+	UserService userService;
 
 	@Autowired
 	CorePlatformService platformService;
@@ -64,7 +67,6 @@ public class UserConsoleController {
 	OrgConsoleService orgConsoleService;
 	@Autowired
 	FileService fileService;
-	
 
    
 
@@ -82,7 +84,7 @@ public class UserConsoleController {
 	@Function("user.edit")
 	public ModelAndView edit(String id) {
 		ModelAndView view = new ModelAndView("/admin/user/edit.html");
-		CoreUser user = userConsoleService.queryById(id);
+		CoreUser user = userService.queryById(id);
 		view.addObject("user", user);
 		return view;
 	}
@@ -97,7 +99,7 @@ public class UserConsoleController {
 	@GetMapping(MODEL + "/changePassword.do")
 	@Function("user.add")
 	public ModelAndView changePassword(Long id) {
-		CoreUser user = userConsoleService.queryById(id);
+		CoreUser user = userService.queryById(id);
 		ModelAndView view = new ModelAndView("/admin/user/changePassword.html");
 		view.addObject("user", user);
 		return view;
@@ -106,7 +108,7 @@ public class UserConsoleController {
 	@GetMapping(MODEL + "/role/list.do")
 	@Function("user.role")
 	public ModelAndView userRoleIndex(Long id) {
-		CoreUser user = userConsoleService.queryById(id);
+		CoreUser user = userService.queryById(id);
 		ModelAndView view = new ModelAndView("/admin/user/userRole.html");
 		view.addObject("search", UserRoleQuery.class.getName());
 		view.addObject("user", user);
@@ -116,7 +118,7 @@ public class UserConsoleController {
 	@GetMapping(MODEL + "/role/add.do")
 	@Function("user.role")
 	public ModelAndView userRoleAdd(Long id) {
-		CoreUser user = userConsoleService.queryById(id);
+		CoreUser user = userService.queryById(id);
 		ModelAndView view = new ModelAndView("/admin/user/userRoleAdd.html");
 		view.addObject("user", user);
 		return view;
@@ -129,7 +131,7 @@ public class UserConsoleController {
 	@ResponseBody
 	public JsonResult delete(String ids) {
 		List<Long> dels = ConvertUtil.str2longs(ids);
-		userConsoleService.batchDelSysUser(dels);
+		userService.batchDelSysUser(dels);
 		return JsonResult.success();
 	}
 
@@ -137,7 +139,7 @@ public class UserConsoleController {
 	@Function("user.update")
 	@ResponseBody
 	public JsonResult update(@Validated(ValidateConfig.UPDATE.class) CoreUser user) {
-		boolean success = userConsoleService.updateTemplate(user);
+		boolean success = userService.updateTemplate(user);
 		if (success) {
 			this.platformService.clearFunctionCache();
 			return JsonResult.success();
@@ -154,7 +156,7 @@ public class UserConsoleController {
 			return JsonResult.failMessage("不允许的注册名字 " + user.getCode());
 		}
 		user.setCreateTime(new Date());
-		userConsoleService.saveUser(user);
+		userService.saveUser(user);
 		return JsonResult.success(user.getId());
 	}
 
@@ -162,7 +164,7 @@ public class UserConsoleController {
 	@ResponseBody
 	@Function("user.query")
 	public JsonResult<CoreUser> view(Long id) {
-		CoreUser user = userConsoleService.queryById(id);
+		CoreUser user = userService.queryById(id);
 		return JsonResult.success(user);
 	}
 
@@ -172,9 +174,20 @@ public class UserConsoleController {
 	public JsonResult<PageQuery<CoreUser>> index(UserQuery condtion) {
 
 		PageQuery<CoreUser> page = condtion.getPageQuery();
-		userConsoleService.queryByCondtion(page);
+		userService.queryByCondtion(page);
 		return JsonResult.success(page);
 	}
+
+	@PostMapping(MODEL + "/update")
+	@ResponseBody
+	public JsonResult updateStatus(BatchStatusQuery query) {
+		if (CollectionUtils.isEmpty(query.getIds()) || StringUtils.isEmpty(query.getStatus())) {
+			return JsonResult.failMessage("请求参数错误");
+		}
+		userService.batchUpdateUserState(query.getIds(), GeneralStateEnum.getEnum(query.getStatus()));
+		return JsonResult.success();
+	}
+
 
 	@PostMapping(MODEL + "/list/condition.json")
 	@Function("user.query")
@@ -191,9 +204,9 @@ public class UserConsoleController {
 
 		List<Long> dels = ConvertUtil.str2longs(ids);
 
-		userConsoleService.batchUpdateUserState(dels, GeneralStateEnum.DISABLE);
+		userService.batchUpdateUserState(dels, GeneralStateEnum.DISABLE);
 		for (Long id : dels) {
-			CoreUser user = userConsoleService.queryById(id);
+			CoreUser user = userService.queryById(id);
 			this.platformService.restUserSession(user.getCode());
 		}
 		return JsonResult.success();
@@ -211,7 +224,7 @@ public class UserConsoleController {
 	public JsonResult enableUser(String ids) {
 
 		List<Long> enables = ConvertUtil.str2longs(ids);
-		userConsoleService.batchUpdateUserState(enables, GeneralStateEnum.ENABLE);
+		userService.batchUpdateUserState(enables, GeneralStateEnum.ENABLE);
 		return JsonResult.success();
 
 	}
@@ -226,22 +239,20 @@ public class UserConsoleController {
 	@ResponseBody
 	public JsonResult changePassword(Long id, String password) {
 
-		userConsoleService.resetPassword(id, password);
+		userService.resetPassword(id, password);
 		return new JsonResult().success();
 	}
 
 	/**
 	 * 用户所有授权角色列表
 	 * 
-	 * @param id
-	 *            用户id
 	 * @return
 	 */
 	@PostMapping(MODEL + "/role/list.json")
 	@Function("user.role")
 	@ResponseBody
 	public JsonResult<List<CoreUserRole>> getRoleList(UserRoleQuery roleQuery) {
-		List<CoreUserRole> list = userConsoleService.getUserRoles(roleQuery);
+		List<CoreUserRole> list = userService.getUserRoles(roleQuery);
 		return JsonResult.success(list);
 	}
 
@@ -255,7 +266,7 @@ public class UserConsoleController {
 	@ResponseBody
 	public JsonResult saveUserRole(@Validated CoreUserRole userRole) {
 		userRole.setCreateTime(new Date());
-		this.userConsoleService.saveUserRole(userRole);
+		this.userService.saveUserRole(userRole);
 		this.platformService.clearFunctionCache();
 		return JsonResult.success(userRole.getId());
 
@@ -272,7 +283,7 @@ public class UserConsoleController {
 	public JsonResult delUserRole(String ids) {
 		List<Long> dels = ConvertUtil.str2longs(ids);
 
-		userConsoleService.deleteUserRoles(dels);
+		userService.deleteUserRoles(dels);
 		this.platformService.clearFunctionCache();
 		return JsonResult.success();
 	}
@@ -288,7 +299,7 @@ public class UserConsoleController {
 		page.setPageSize(Integer.MAX_VALUE);
 		page.setPageNumber(1);
 		page.setTotalRow(Integer.MAX_VALUE);
-		List<UserExcelExportData> users =userConsoleService.queryExcel(page);
+		List<UserExcelExportData> users = userService.queryExcel(page);
 		try(InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(excelTemplate)) {
 	        if(is==null) {
 	        	throw new PlatformException("模板资源不存在："+excelTemplate);
@@ -305,10 +316,6 @@ public class UserConsoleController {
 		}
 		
 	}
-	
-	
-	
-	
 	
 
 }

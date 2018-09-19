@@ -22,7 +22,9 @@ queryByCondtion
         and  u.name like #"%"+name+"%"#
     @}
     @if(!isEmpty(state)){
-        and  u.state = #state#
+        and  u.state in (#state#)
+    @}else{
+        and u.state in (0,1)
     @}
     @if(!isEmpty(jobType0)){
         and  u.job_type0= #jobType0#
@@ -36,12 +38,15 @@ queryByCondtion
     @if(!isEmpty(createDateMax)){
         and  u.create_time< #nextDay(createDateMax)#
     @}
+    @if(!isEmpty(sortField) && !isEmpty(sortType)){
+        order by #sortField# #sortType#
+    @}
     
     
 
 batchDelUserByIds
 ===
-    update core_user u set u.del_flag = 1 where u.id in( #join(ids)#)
+    update core_user u set u.state = 2 where u.id in( #join(ids)#)
     
 batchUpdateUserState
 ===

@@ -12,7 +12,7 @@ package com.ibeetl.admin.core.web;
 public enum JsonReturnCode {
 
     NOT_LOGIN("401","未登录"),
-    SUCCESS ("200","成功"),
+    SUCCESS ("201","成功"),
     FAIL ("500","内部失败"),
 	ACCESS_ERROR ("403","禁止访问"),
 	NOT_FOUND ("404","页面未发现");
