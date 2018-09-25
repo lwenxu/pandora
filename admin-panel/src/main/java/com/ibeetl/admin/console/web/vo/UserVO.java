@@ -1,10 +1,12 @@
 package com.ibeetl.admin.console.web.vo;
 
 import com.google.common.collect.Lists;
+import com.ibeetl.admin.console.service.GroupService;
 import com.ibeetl.admin.core.entity.CoreUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.Date;

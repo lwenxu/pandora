@@ -49,6 +49,8 @@ public class UserService extends BaseService<CoreUser> {
     CoreDictService dictService;
     @Autowired
     CorePlatformService platformService;
+    @Autowired
+    GroupService groupService;
 
     /**
      * 根据条件查询
@@ -60,7 +62,7 @@ public class UserService extends BaseService<CoreUser> {
 
             @Override
             protected List<CoreUser> invoke() {
-                 userDao.queryByCondition(query);
+//                List<CoreUser> pageQueryList = userDao.queryByCondition(query).getList();
                 return userDao.queryByCondition(query).getList();
             }
 

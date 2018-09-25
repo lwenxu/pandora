@@ -3,25 +3,24 @@ package com.ibeetl.admin.console.web;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Lists;
 import com.ibeetl.admin.console.constant.ResultType;
 import com.ibeetl.admin.console.domain.ResultDO;
 import com.ibeetl.admin.console.exception.ServiceExecException;
+import com.ibeetl.admin.console.service.GroupService;
 import com.ibeetl.admin.console.utils.ResultUtil;
 import com.ibeetl.admin.console.web.query.BatchStatusQuery;
 import com.ibeetl.admin.console.web.vo.ResultVO;
 import com.ibeetl.admin.console.web.vo.UserVO;
+import com.ibeetl.admin.core.entity.CoreGroup;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.assertj.core.util.Lists;
 import org.beetl.sql.core.engine.PageQuery;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
@@ -75,6 +74,8 @@ public class UserController {
 	OrgConsoleService orgConsoleService;
 	@Autowired
 	FileService fileService;
+	@Autowired
+	GroupService groupService;
 
    
 
@@ -189,11 +190,27 @@ public class UserController {
 		List<UserVO> ret = Lists.newArrayList();
 		if (Objects.nonNull(result)) {
 			for (CoreUser coreUser : result) {
-				ret.add(UserVO.transToVO(coreUser));
+				UserVO userVO = UserVO.transToVO(coreUser);
+				List<String> groupRet = getUserGroup(coreUser);
+				userVO.setGroup(groupRet);
+				ret.add(userVO);
 			}
 		}
 		vo.setData(ret);
 		return vo;
+	}
+
+	private List<String> getUserGroup(CoreUser coreUser) throws ServiceExecException {
+		ResultDO<List<CoreGroup>> group = groupService.queryGroupById(coreUser.getgId());
+		if (!group.getSuccess()) {
+			throw new ServiceExecException(ResultType.SERVICE_FAILURE.getDesc());
+		}
+		List<CoreGroup> groups = group.getResult();
+		List<String> groupRet = Lists.newLinkedList();
+		for (CoreGroup coreGroup : groups) {
+			groupRet.add(coreGroup.getName());
+		}
+		return groupRet;
 	}
 
 	@PostMapping(MODEL + "/update")

@@ -69,9 +69,17 @@ public class CoreUser extends BaseEntity  {
 	private String attachmentId;
 
 
+	private long gId;
 	private String phone;
 	private String email;
 
+	public long getgId() {
+		return gId;
+	}
+
+	public void setgId(long gId) {
+		this.gId = gId;
+	}
 
 	public String getPhone() {
 		return phone;
