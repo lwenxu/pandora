@@ -6,14 +6,22 @@ import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.ibeetl.admin.console.constant.ResultType;
+import com.ibeetl.admin.console.domain.ResultDO;
+import com.ibeetl.admin.console.exception.ServiceExecException;
+import com.ibeetl.admin.console.utils.ResultUtil;
 import com.ibeetl.admin.console.web.query.BatchStatusQuery;
+import com.ibeetl.admin.console.web.vo.ResultVO;
+import com.ibeetl.admin.console.web.vo.UserVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.assertj.core.util.Lists;
 import org.beetl.sql.core.engine.PageQuery;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
@@ -168,14 +176,24 @@ public class UserController {
 		return JsonResult.success(user);
 	}
 
-	@PostMapping(MODEL + "/list.json")
+	@PostMapping(MODEL + "/list")
 	@Function("user.query")
 	@ResponseBody
-	public JsonResult<PageQuery<CoreUser>> index(UserQuery condtion) {
-
-		PageQuery<CoreUser> page = condtion.getPageQuery();
-		userService.queryByCondtion(page);
-		return JsonResult.success(page);
+	public ResultVO<List<UserVO>> index(UserQuery condition) throws ServiceExecException {
+		ResultDO<List<CoreUser>> resultDO = userService.queryByCondition(condition.getPageQuery());
+		if (!resultDO.getSuccess()) {
+			throw new ServiceExecException(ResultType.SERVICE_FAILURE.getDesc());
+		}
+		ResultVO<List<UserVO>> vo = ResultUtil.success();
+		List<CoreUser> result = resultDO.getResult();
+		List<UserVO> ret = Lists.newArrayList();
+		if (Objects.nonNull(result)) {
+			for (CoreUser coreUser : result) {
+				ret.add(UserVO.transToVO(coreUser));
+			}
+		}
+		vo.setData(ret);
+		return vo;
 	}
 
 	@PostMapping(MODEL + "/update")

@@ -68,6 +68,27 @@ public class CoreUser extends BaseEntity  {
 	/*用户的个人资料附件，保存到Core_File 表里*/
 	private String attachmentId;
 
+
+	private String phone;
+	private String email;
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getCode() {
 		return code;
 	}

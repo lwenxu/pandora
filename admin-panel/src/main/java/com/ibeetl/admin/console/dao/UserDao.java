@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public interface UserDao extends BaseMapper<CoreUser> {
 
-    PageQuery<CoreUser> queryByCondtion(@Param("query") PageQuery<CoreUser> query);
+    PageQuery<CoreUser> queryByCondition(@Param("query") PageQuery<CoreUser> query);
 
     void batchDelUserByIds(@Param("ids") List<Long> ids);
 

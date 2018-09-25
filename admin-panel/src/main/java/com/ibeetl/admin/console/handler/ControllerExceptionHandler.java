@@ -1,5 +1,6 @@
-package com.ibeetl.admin.console.exception;
+package com.ibeetl.admin.console.handler;
 
+import com.ibeetl.admin.console.exception.ServiceExecException;
 import com.ibeetl.admin.console.utils.ResultUtil;
 import com.ibeetl.admin.console.web.vo.ResultVO;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -6,6 +6,7 @@ import com.ibeetl.admin.core.web.JsonReturnCode;
 /**
  * Created by lwen on 2018/9/18
  */
+@SuppressWarnings("all")
 public class ResultUtil {
     public static ResultVO success() {
         return new ResultVO(JsonReturnCode.SUCCESS.getCode(), true);

@@ -174,7 +174,7 @@ public class OrgConsoleController {
     @ResponseBody
     public JsonResult<PageQuery<CoreUser>> getUsers(OrgUserQuery userQuery) {
     	 PageQuery<CoreUser> page = userQuery.getPageQuery();
-         userService.queryByCondtion(page);
+         userService.queryByCondition(page);
          return JsonResult.success(page);
     }
    
