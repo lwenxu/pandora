@@ -191,7 +191,7 @@ public class UserController {
 		if (Objects.nonNull(result)) {
 			for (CoreUser coreUser : result) {
 				UserVO userVO = UserVO.transToVO(coreUser);
-				List<String> groupRet = getUserGroup(coreUser);
+				List<Long> groupRet = getUserGroup(coreUser);
 				userVO.setGroup(groupRet);
 				ret.add(userVO);
 			}
@@ -200,15 +200,15 @@ public class UserController {
 		return vo;
 	}
 
-	private List<String> getUserGroup(CoreUser coreUser) throws ServiceExecException {
+	private List<Long> getUserGroup(CoreUser coreUser) throws ServiceExecException {
 		ResultDO<List<CoreGroup>> group = groupService.queryGroupById(coreUser.getgId());
 		if (!group.getSuccess()) {
 			throw new ServiceExecException(ResultType.SERVICE_FAILURE.getDesc());
 		}
 		List<CoreGroup> groups = group.getResult();
-		List<String> groupRet = Lists.newLinkedList();
+		List<Long> groupRet = Lists.newLinkedList();
 		for (CoreGroup coreGroup : groups) {
-			groupRet.add(coreGroup.getName());
+			groupRet.add(coreGroup.getId());
 		}
 		return groupRet;
 	}

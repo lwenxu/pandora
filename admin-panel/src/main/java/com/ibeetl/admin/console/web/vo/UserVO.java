@@ -19,7 +19,7 @@ public class UserVO implements Serializable {
     private Long id;
     private String username;
     private String nickName;
-    private List<String> group;
+    private List<Long> group;
     private Integer status;
     private Date createTime;
     private Date updateTime;
@@ -27,11 +27,12 @@ public class UserVO implements Serializable {
     private String email;
 
     public static UserVO transToVO(CoreUser user) {
-        List<String> group = Lists.newLinkedList();
+        List<Long> group = Lists.newLinkedList();
         return new UserVO(user.getId(),
                 user.getCode(),
                 user.getName(),
-                group, Integer.parseInt(user.getState()),
+                group,
+                Integer.parseInt(user.getState()),
                 user.getCreateTime(),
                 user.getUpdateTime(),
                 user.getPhone(),
