@@ -4,10 +4,10 @@ queryByCondition
     @pageTag(){
     u.*,o.name org_name
     @}
-    from core_user u left join core_org o on u.org_id=o.id where 1=1 and u.del_flag = 0 
+    from core_user u left join core_group o on u.g_id=o.id where 1=1
     @//数据权限，该sql语句功能点  
     
-    @if(!isEmpty(orgId)){
+    @if(!isEmpty(group)){
         and  u.g_id =#group#
     @}
     @if(!isEmpty(code)){

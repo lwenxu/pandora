@@ -24,7 +24,8 @@ public class UserQuery extends PageParam {
 	private String name ;
 	private String nickName;
 	@Query(name = "部门", display = true, type = Query.TYPE_CONTROL, control = "org")
-	private List<Long> group;
+	@Getter @Setter
+	private Long group;
 	
 	@Query(name="状态",display=true,type=Query.TYPE_DICT,dict=CoreDictType.USER_STATE)
 	private String state;
@@ -57,18 +58,6 @@ public class UserQuery extends PageParam {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
-	public Long getGroup() {
-		if (CollectionUtils.isEmpty(group)) {
-			return null;
-		}
-		return group.get(group.size());
-	}
-
-	public void setGroup(List<Long> group) {
-		this.group = group;
-	}
-
 	public String getCode() {
 		return code;
 	}
