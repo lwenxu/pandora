@@ -8,16 +8,16 @@ queryByCondition
     @//数据权限，该sql语句功能点  
     
     @if(!isEmpty(orgId)){
-        and  u.org_id =#orgId#
-    @}
-     @if(!isEmpty(orgId)){
-        and  u.org_id =#orgId#
+        and  u.g_id =#group#
     @}
     @if(!isEmpty(code)){
         and  u.code like #"%"+code+"%"#
     @}
     @if(!isEmpty(name)){
         and  u.name like #"%"+name+"%"#
+    @}
+    @if(!isEmpty(name)){
+        and  u.nickName like #"%"+nickName+"%"#
     @}
     @if(!isEmpty(state)){
         and  u.state in (#state#)

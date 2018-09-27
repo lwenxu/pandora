@@ -181,6 +181,7 @@ public class UserController {
 	@Function("user.query")
 	@ResponseBody
 	public ResultVO<List<UserVO>> index(UserQuery condition) throws ServiceExecException {
+		System.out.println(condition);
 		ResultDO<List<CoreUser>> resultDO = userService.queryByCondition(condition.getPageQuery());
 		if (!resultDO.getSuccess()) {
 			throw new ServiceExecException(ResultType.SERVICE_FAILURE.getDesc());

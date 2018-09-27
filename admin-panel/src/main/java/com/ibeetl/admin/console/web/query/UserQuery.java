@@ -1,10 +1,13 @@
 package com.ibeetl.admin.console.web.query;
 
 import java.util.Date;
+import java.util.List;
 
 import com.ibeetl.admin.console.constant.SortType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ibeetl.admin.core.annotation.Query;
@@ -12,14 +15,16 @@ import com.ibeetl.admin.core.util.Tool;
 import com.ibeetl.admin.core.util.enums.CoreDictType;
 import com.ibeetl.admin.core.web.query.PageParam;
 
+@ToString
 public class UserQuery extends PageParam {
 
 	@Query(name="账号",display=true,fuzzy=true)
 	private String code ;
 	@Query(name="名称",display=true,fuzzy=true)
 	private String name ;
-	@Query(name="部门",display=true,type=Query.TYPE_CONTROL,control="org")
-	private Long orgId;
+	private String nickName;
+	@Query(name = "部门", display = true, type = Query.TYPE_CONTROL, control = "org")
+	private List<Long> group;
 	
 	@Query(name="状态",display=true,type=Query.TYPE_DICT,dict=CoreDictType.USER_STATE)
 	private String state;
@@ -43,7 +48,26 @@ public class UserQuery extends PageParam {
 	private String createDateRange;
 	private Date createDateMin;
 	private Date createDateMax;
-	
+
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public Long getGroup() {
+		if (CollectionUtils.isEmpty(group)) {
+			return null;
+		}
+		return group.get(group.size());
+	}
+
+	public void setGroup(List<Long> group) {
+		this.group = group;
+	}
 
 	public String getCode() {
 		return code;
@@ -56,9 +80,6 @@ public class UserQuery extends PageParam {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Long getOrgId() {
-		return orgId;
 	}
 
 	public void setSorter(String sorter) {
@@ -74,9 +95,6 @@ public class UserQuery extends PageParam {
 		return sorter;
 	}
 
-	public void setOrgId(Long orgId) {
-		this.orgId = orgId;
-	}
 	public String getState() {
 		return state;
 	}
