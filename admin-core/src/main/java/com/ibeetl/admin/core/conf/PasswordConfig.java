@@ -1,5 +1,7 @@
 package com.ibeetl.admin.core.conf;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,11 +24,12 @@ public class PasswordConfig {
 	
 	
 	public static class DefaultEncryptBean implements PasswordEncryptService {
-
+		@Autowired
+		private CustomConfig customConfig;
 		@Override
 		public String password(String pwd) {
 			// 采用明文，系统应该提供自己的EncryptBean实现以代替默认
-			return pwd;
+			return DigestUtils.md5Hex(pwd + customConfig.getSalt());
 		}
 		
 	}

@@ -9,11 +9,11 @@ queryByCondtion
     @if(!isEmpty(functionIds)){
         and  f.id in ( #join(functionIds)#)
     @}
-    @if(!isEmpty(code)){
-        and  f.code like #"%"+code+"%"#
+    @if(!isEmpty(username)){
+        and  f.username like #"%"+username+"%"#
     @}
-    @if(!isEmpty(name)){
-        and  f.name like #"%"+name+"%"#
+    @if(!isEmpty(username)){
+        and  f.username like #"%"+username+"%"#
     @}
     @if(!isEmpty(accessUrl)){
         and  f.access_url like #"%"+accessUrl+"%"#

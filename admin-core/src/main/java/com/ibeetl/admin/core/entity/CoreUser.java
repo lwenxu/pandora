@@ -1,28 +1,27 @@
 package com.ibeetl.admin.core.entity;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ibeetl.admin.core.annotation.Dict;
 import com.ibeetl.admin.core.util.ValidateConfig;
+import com.ibeetl.admin.core.util.enums.CoreDictType;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.SeqID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ibeetl.admin.core.util.enums.CoreDictType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Date;
 
 /*
 *   用户实体
 *
 */
 
-public class CoreUser extends BaseEntity  {
-
-	
-
+@ToString
+public class CoreUser extends BaseEntity  implements Serializable {
 	@NotNull(message = "ID不能为空", groups = ValidateConfig.UPDATE.class)
 	@SeqID(name = ORACLE_CORE_SEQ_NAME)
 	@AutoID
@@ -33,16 +32,16 @@ public class CoreUser extends BaseEntity  {
 	// 创建时间
 
 	protected Date createTime;
-	
-
 	// 登录名，编号
+	@Getter@Setter
 	@NotBlank(message = "用户编号不能为空", groups = ValidateConfig.ADD.class)
-	@Null(message = "用户编号不能为空", groups = ValidateConfig.UPDATE.class)
-	private String code;
+	@NotNull(message = "用户编号不能为空", groups = ValidateConfig.UPDATE.class)
+	private String username;
 
 	// 用户姓名
+	@Getter@Setter
 	@NotBlank(message = "用户名不能为空")
-	private String name;
+	private String nickname;
 
 	// 组织机构id
 
@@ -53,7 +52,7 @@ public class CoreUser extends BaseEntity  {
 	private String password;
 	
 	@Dict(type=CoreDictType.USER_STATE)
-	private String state;
+	private String status;
 	
 	//扩展例子
 	@Dict(type="job_type")
@@ -68,17 +67,16 @@ public class CoreUser extends BaseEntity  {
 	/*用户的个人资料附件，保存到Core_File 表里*/
 	private String attachmentId;
 
-
-	private long gId;
+	private long group;
 	private String phone;
 	private String email;
 
-	public long getgId() {
-		return gId;
+	public long getGroup() {
+		return group;
 	}
 
-	public void setgId(long gId) {
-		this.gId = gId;
+	public void setGroup(long group) {
+		this.group = group;
 	}
 
 	public String getPhone() {
@@ -95,22 +93,6 @@ public class CoreUser extends BaseEntity  {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Long getOrgId() {
@@ -172,12 +154,12 @@ public class CoreUser extends BaseEntity  {
 		this.jobType1 = jobType1;
 	}
 
-	public String getState() {
-		return state;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getUpdateTime() {

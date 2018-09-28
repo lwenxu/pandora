@@ -207,7 +207,7 @@ public class CorePlatformService {
      * @return
      */
     public boolean isSupperAdmin(CoreUser user) {
-        return user.getCode().startsWith(ACCESS_SUPPER_ADMIN);
+        return user.getUsername().startsWith(ACCESS_SUPPER_ADMIN);
     }
 
     public boolean isCurrentSupperAdmin() {

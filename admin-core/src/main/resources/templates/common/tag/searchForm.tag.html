@@ -12,9 +12,9 @@ for(item in items){
 -->
 
      <div class="layui-inline">
-      <label class="layui-form-label">${item.name}</label>
+      <label class="layui-form-label">${item.username}</label>
       <div class="layui-input-inline">
-        <input type="text" name="${item.fieldName}" autocomplete="off" class="layui-input">
+        <input type="text" username="${item.fieldName}" autocomplete="off" class="layui-input">
       </div>
     </div>
 <!--#}  
@@ -22,16 +22,16 @@ for(item in items){
 -->
      <!--#
      var component = item.control+".html";
-     var paras = {name:item.fieldName,label:item.name};
+     var paras = {username:item.fieldName,label:item.username};
      include("/common/query/"+component,paras){}  -->
      
 <!--#}
 	case 5:{ //数据字典
 -->
 	<div class="layui-inline">
-      <label class="layui-form-label">${item.name}</label>
+      <label class="layui-form-label">${item.username}</label>
      <layui:simpleDictSelect style='layui-input-inline' type="${item.dict}"
-				 name="${item.fieldName}" value="" group="${item.group}"/>
+				 username="${item.fieldName}" value="" group="${item.group}"/>
     </div>
   
 <!--#}
@@ -39,10 +39,10 @@ for(item in items){
 case 2:{ //日期范围
 -->
 	 <div class="layui-inline">
-      <label class="layui-form-label">${item.name}</label>
+      <label class="layui-form-label">${item.username}</label>
       <div class="layui-input-inline">
       	<div class="date-range-pick">
-        <input type="text" name="${item.fieldName}" autocomplete="off" class="layui-input">
+        <input type="text" username="${item.fieldName}" autocomplete="off" class="layui-input">
         </div>
         </div>
       </div>

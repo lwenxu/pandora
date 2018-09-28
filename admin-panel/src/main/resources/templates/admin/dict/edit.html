@@ -7,7 +7,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">字典值</label>
 				<div class="layui-input-block">
-					<input type="text" name="value" value="${dict.value}"
+					<input type="text" username="value" value="${dict.value}"
 						class="layui-input">
 				</div>
 			</div>
@@ -15,7 +15,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">字典名称</label>
 				<div class="layui-input-block">
-					<input type="text" name="name" value="${dict.name}"
+					<input type="text" username="username" value="${dict.username}"
 						class="layui-input">
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">类型</label>
 				<div class="layui-input-inline">
-					<input type="text" name="type" value="${dict.type}"
+					<input type="text" username="type" value="${dict.type}"
 						class="layui-input">
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">类型描述</label>
 				<div class="layui-input-inline">
-					<input type="text" name="typeName" value="${dict.typeName}"
+					<input type="text" username="typeName" value="${dict.typeName}"
 						class="layui-input">
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">显示顺序</label>
 				<div class="layui-input-inline">
-					<input type="text" name="sort" value="${dict.sort}"
+					<input type="text" username="sort" value="${dict.sort}"
 						class="layui-input">
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">父字典值</label>
 				<div class="layui-input-inline">
-					<input type="text" name="parent" value="${dict.parent}"
+					<input type="text" username="parent" value="${dict.parent}"
 						class="layui-input">
 				</div>
 			</div>
@@ -70,12 +70,12 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">备注</label>
 			<div class="layui-input-block">
-				<input type="text" name="remark" value="${dict.remark}"
+				<input type="text" username="remark" value="${dict.remark}"
 					class="layui-input">
 			</div>
 		</div>
 	</div>
-	<input type="hidden" name="id" value=${dict.id} />
+	<input type="hidden" username="id" value=${dict.id} />
 
 	<layui:submitButtons id="updateButton" />
 </form>

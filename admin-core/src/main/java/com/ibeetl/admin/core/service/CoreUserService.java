@@ -2,10 +2,12 @@ package com.ibeetl.admin.core.service;
 
 import java.util.List;
 
+import com.ibeetl.admin.core.conf.CustomConfig;
 import com.ibeetl.admin.core.conf.PasswordConfig;
 import com.ibeetl.admin.core.dao.CoreOrgDao;
 import com.ibeetl.admin.core.dao.CoreUserDao;
 import com.ibeetl.admin.core.rbac.UserLoginInfo;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.beetl.sql.core.SQLManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +32,21 @@ public class CoreUserService {
     PasswordConfig.PasswordEncryptService passwordEncryptService;
 	
 	@Autowired SQLManager sqlManager;
-	
+
+	@Autowired
+	CustomConfig config;
+
 	public UserLoginInfo login(String userName, String password){
 		CoreUser query = new CoreUser();
-		query.setCode(userName);
+		query.setUsername(userName);
 		query.setPassword(passwordEncryptService.password(password));
-		query.setState(GeneralStateEnum.ENABLE.getValue());
-		CoreUser user =userDao.createLambdaQuery().andEq(CoreUser::getCode,userName).
+		query.setStatus(GeneralStateEnum.ENABLE.getValue());
+		CoreUser user =userDao.createLambdaQuery().andEq(CoreUser::getUsername,userName).
 		    andEq(CoreUser::getPassword, passwordEncryptService.password(password)).single();
 		if(user==null) {
 		    throw new PlatformException("用户"+userName+"不存在或者密码错误");
 		}
-		if(!user.getState().equals(GeneralStateEnum.ENABLE.getValue())){
+		if(!user.getStatus().equals(GeneralStateEnum.ENABLE.getValue())){
 		    throw new PlatformException("用户"+userName+"已经失效");
 		}
 		if(user.getDelFlag()==DelFlagEnum.DELETED.getValue()) {
@@ -77,7 +82,7 @@ public class CoreUserService {
 	
 	public CoreUser getUserByCode(String userName){
 		CoreUser user = new CoreUser();
-		user.setCode(userName);
+		user.setUsername(userName);
 		return userDao.templateOne(user);
 	}
 	

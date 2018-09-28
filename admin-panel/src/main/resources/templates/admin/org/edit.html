@@ -5,16 +5,16 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">机构名</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" autocomplete="off"
-					placeholder="请输入标题" class="layui-input" value="${org.name}">
+				<input type="text" username="username" autocomplete="off"
+					placeholder="请输入标题" class="layui-input" value="${org.username}">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">机构代码</label>
 			<div class="layui-input-inline">
-				<input type="text" name="code" readonly lay-verify="required"
+				<input type="text" username="username" readonly lay-verify="required"
 					placeholder="请输入" autocomplete="off" class="layui-input"
-					value="${org.code}">
+					value="${org.username}">
 			</div>
 		</div>
 	</div>
@@ -23,7 +23,7 @@
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">所在父机构</label>
-				<layui:orgInput style='layui-input-inline' name="parentOrgId" id="parentOrgId"
+				<layui:orgInput style='layui-input-inline' username="parentOrgId" id="parentOrgId"
 					value="${org.parentOrgId}"></layui:orgInput>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">结构类型</label>
 			<layui:simpleDictSelect style='layui-input-inline' type="org_type"
-				id="type" name="type" value="${org.type}" />
+				id="type" username="type" value="${org.type}" />
 		</div>
 		</div>
 
@@ -42,7 +42,7 @@
 	
 	
 	<layui:submitButtons id="saveOrg" />
-	<input type="hidden" name="id" value=${org.id} />
+	<input type="hidden" username="id" value=${org.id} />
 </form>
 <!--#} -->
 <script>

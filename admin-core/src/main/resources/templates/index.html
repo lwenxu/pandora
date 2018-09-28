@@ -2,7 +2,7 @@
   <!-- 顶部 -->
   <form class="layui-form layui-form-pane">
   <div class="layui-header">
-    <a href="ibeetl.com" class="layui-hide-xs"><div class="layui-logo">${env("app.name")}</div></a>
+    <a href="ibeetl.com" class="layui-hide-xs"><div class="layui-logo">${env("app.username")}</div></a>
     <a href="javascript:;" class="layui-hide-xs"><div class="fsSwitchMenu"><i class="iconfont icon-category"></i></div></a>
     
     <!-- 顶部菜单 -->
@@ -10,9 +10,9 @@
       <!--#for(node in menus.children){  -->
       <li class="layui-nav-item ${nodeLP.first?'layui-this'}" dataPid="${node.data.id}"><a href="javascript:;"><i class="layui-icon">${node.data.icon}</i>
       <!--#if(nodeLP.first){  -->
-      <cite>${node.data.name}</cite>
+      <cite>${node.data.username}</cite>
       <!--#}else{  -->
-      ${node.data.name}
+      ${node.data.username}
       <!--#}  -->
       </a></li>
       <!--#} -->
@@ -21,11 +21,11 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item layui-hide-xs">
         <a href="javascript:;">
-         	${session["core:user"].name}
+         	${session["core:user"].username}
         </a>
         <dl class="layui-nav-child">
           <dd><a href="javascript:;">基本资料</a></dd>
-          <dd id="changeCompanyButton"><a href="javascript:;">${session["core:currentOrg"].name}</a>
+          <dd id="changeCompanyButton"><a href="javascript:;">${session["core:currentOrg"].username}</a>
           </dd>
         </dl>
       </li>
@@ -47,7 +47,7 @@
 				}
 			 -->
 		  	
-		  	<option value="${org.id}" ${checked?"selected"}>${org.name}</option>
+		  	<option value="${org.id}" ${checked?"selected"}>${org.username}</option>
 		  	<!--#}  -->
 		  	</select>
   		</div>
@@ -66,11 +66,11 @@
       	-->
       	<!--#for(subSystem in node.children){  -->
         <li class="layui-nav-item layui-nav-itemed" dataPid="${node.data.id}" style="display: none;">
-          <a href="javascript:;">${subSystem.data.name}</a>
+          <a href="javascript:;">${subSystem.data.username}</a>
           <dl class="layui-nav-child">
           	<!--#for(menu in subSystem.children){  -->
           	<dd class="" ><a href="javascript:;" menuId="${menu.data.id}" dataUrl="${ctxPath}${menu.data.accessUrl}"><i class="layui-icon">&#xe68e;</i> 
-          	${menu.data.name}
+          	${menu.data.username}
           	</a></dd>
             <!--#}  -->
            </dl>

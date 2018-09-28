@@ -1,12 +1,10 @@
 package com.ibeetl.admin.console.web.vo;
 
 import com.google.common.collect.Lists;
-import com.ibeetl.admin.console.service.GroupService;
 import com.ibeetl.admin.core.entity.CoreUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -29,10 +27,10 @@ public class UserVO implements Serializable {
     public static UserVO transToVO(CoreUser user) {
         List<Long> group = Lists.newLinkedList();
         return new UserVO(user.getId(),
-                user.getCode(),
-                user.getName(),
+                user.getUsername(),
+                user.getNickname(),
                 group,
-                Integer.parseInt(user.getState()),
+                Integer.parseInt(user.getStatus()),
                 user.getCreateTime(),
                 user.getUpdateTime(),
                 user.getPhone(),

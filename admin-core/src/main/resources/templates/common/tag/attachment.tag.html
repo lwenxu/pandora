@@ -1,15 +1,15 @@
 <!--# 
-var name = name!"attachement";
+var username = username!"attachement";
 var uploadURL = ctxPath+"/core/file/uploadAttachment.json";
-var chooseId = name+"List";
-var uploadId = name+"ListAction";
-var filesListId = name+"DataList";
+var chooseId = username+"List";
+var uploadId = username+"ListAction";
+var filesListId = username+"DataList";
 //加载已经在数据库列表
 var files = (isNew=="true")?[]:core.file(batchFileUUID);
 
 -->
 <div class="layui-upload">
-	<input type="hidden" name="${name}" value="${batchFileUUID}" ${isNotEmpty(layVerify)?('lay-verify="'+layVerify+'"'):''} />
+	<input type="hidden" username="${username}" value="${batchFileUUID}" ${isNotEmpty(layVerify)?('lay-verify="'+layVerify+'"'):''} />
 	<button type="button" class="layui-btn layui-btn-normal"
 		id="${chooseId}">选择多文件</button>
 	
@@ -28,7 +28,7 @@ var files = (isNew=="true")?[]:core.file(batchFileUUID);
 				<!--# for(file in files){  -->
 		      	<tr>
 		      	<td>${file.id}</td>
-		      	<td>${file.name}</td>
+		      	<td>${file.username}</td>
 		        <td>成功</td>
 		        <td>
 			        
@@ -69,7 +69,7 @@ function() {
             var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
             //读取本地文件
             obj.preview(function(index, file, result) {
-                var tr = $(['<tr id="${name}Upload-' + index + '">', '<td></td>', '<td>' + file.name + '</td>', '<td>等待上传</td>', '<td>', '<button class="layui-btn layui-btn-mini demo-reload  layui-hide">重传</button>', '<button class="layui-btn layui-btn-mini layui-btn-danger demo-cancel">取消</button>', '</td>', '</tr>'].join(''));
+                var tr = $(['<tr id="${username}Upload-' + index + '">', '<td></td>', '<td>' + file.username + '</td>', '<td>等待上传</td>', '<td>', '<button class="layui-btn layui-btn-mini demo-reload  layui-hide">重传</button>', '<button class="layui-btn layui-btn-mini layui-btn-danger demo-cancel">取消</button>', '</td>', '</tr>'].join(''));
                 //单个重传
                 tr.find('.demo-reload').on('click',
                 function() {
@@ -88,11 +88,11 @@ function() {
             });
         },
         done: function(res, index, upload) {
-            if (res.code != 0) {
+            if (res.username != 0) {
                 this.error(index, upload);
                 return
             } //上传成功
-            var tr = demoListView.find('tr#${name}Upload-' + index),
+            var tr = demoListView.find('tr#${username}Upload-' + index),
             tds = tr.children();
             tds.eq(0).html(  res.data.id);
             tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
@@ -101,7 +101,7 @@ function() {
             return delete this.files[index]; //删除文件队列已经上传成功的文件
         },
         error: function(index, upload) {
-            var tr = demoListView.find('tr#${name}upload-' + index),
+            var tr = demoListView.find('tr#${username}upload-' + index),
             tds = tr.children();
             tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
             tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传

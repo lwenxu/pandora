@@ -2,27 +2,27 @@ queryByCondition
 ===
     select 
     @pageTag(){
-    u.*,o.name org_name
+    u.*
     @}
-    from core_user u left join core_group o on u.g_id=o.id where 1=1
+    from core_user u left join core_group o on u.group=o.id where 1=1
     @//数据权限，该sql语句功能点  
     
     @if(!isEmpty(group)){
-        and  u.g_id =#group#
+        and  u.group =#group#
     @}
-    @if(!isEmpty(code)){
-        and  u.code like #"%"+code+"%"#
+    @if(!isEmpty(username)){
+        and  u.username like #"%"+username+"%"#
     @}
-    @if(!isEmpty(name)){
-        and  u.name like #"%"+name+"%"#
+    @if(!isEmpty(username)){
+        and  u.username like #"%"+username+"%"#
     @}
-    @if(!isEmpty(name)){
-        and  u.nickName like #"%"+nickName+"%"#
+    @if(!isEmpty(username)){
+        and  u.nickname like #"%"+nickname+"%"#
     @}
-    @if(!isEmpty(state)){
-        and  u.state in (#state#)
+    @if(!isEmpty(status)){
+        and  u.status in (#status#)
     @}else{
-        and u.state in (0,1)
+        and u.status in (0,1)
     @}
     @if(!isEmpty(jobType0)){
         and  u.job_type0= #jobType0#
@@ -44,11 +44,11 @@ queryByCondition
 
 batchDelUserByIds
 ===
-    update core_user u set u.state = 2 where u.id in( #join(ids)#)
+    update core_user u set u.status = 2 where u.id in( #join(ids)#)
     
 batchUpdateUserState
 ===
-    update core_user u set u.state = #state# where u.id in( #join(ids)#)
+    update core_user u set u.status = #status# where u.id in( #join(ids)#)
     
 queryUserRole
 ===
@@ -56,9 +56,9 @@ queryUserRole
 * 查询用户所有权限
 
     select	
-    ur.*, u.code as user_code,
-    u.name as user_name,
-    org.name as org_name, role.name as role_name
+    ur.*, u.username as user_code,
+    u.username as user_name,
+    org.username as org_name, role.username as role_name
     from core_user_role ur
     left join core_org org on org.id = ur.org_id
     left join core_user u on u.id = ur.user_id

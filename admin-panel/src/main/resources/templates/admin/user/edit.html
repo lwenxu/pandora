@@ -6,16 +6,16 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户姓名</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" autocomplete="off"
-					placeholder="请输入标题" class="layui-input" value="${user.name}">
+				<input type="text" username="username" autocomplete="off"
+					placeholder="请输入标题" class="layui-input" value="${user.username}">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户帐号</label>
 			<div class="layui-input-inline">
-				<input type="text" name="code" disabled lay-verify="required"
+				<input type="text" username="username" disabled lay-verify="required"
 					placeholder="请输入" autocomplete="off" class="layui-input"
-					value="${user.code}">
+					value="${user.username}">
 			</div>
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">所在机构</label>
-				<layui:orgInput style='layui-input-inline' name="orgId" id="orgId"
+				<layui:orgInput style='layui-input-inline' username="orgId" id="orgId"
 					value="${user.orgId}"></layui:orgInput>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户状态</label>
 			<layui:simpleDictSelect style='layui-input-inline' type="user_state"
-				id="state" name="state" value="${user.state}" />
+				id="status" username="status" value="${user.status}" />
 		</div>
 		</div>
 
@@ -48,7 +48,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">职务类型</label>
 				<layui:simpleDictSelect style='layui-input-inline' type="job_type"
-					id="jobType0" name="jobType0" value="${user.jobType0}" group="job_type"/>
+					id="jobType0" username="jobType0" value="${user.jobType0}" group="job_type"/>
 			</div>
 		</div>
 		</div>
@@ -57,18 +57,18 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">职务类型明细</label>
 			<layui:simpleDictSelect style='layui-input-inline' type=""
-				id="jobType1" name="jobType1" value="${user.jobType1}"  group="job_type"/>
+				id="jobType1" username="jobType1" value="${user.jobType1}"  group="job_type"/>
 		</div>
 		</div>
 
 	</div>
 	
 	<div class="layui-row">
-		<layui:attachment name="attachmentId" batchFileUUID="${user.attachmentId}" isNew="false" bizId="${user.id}" bizType="User"/>
+		<layui:attachment username="attachmentId" batchFileUUID="${user.attachmentId}" isNew="false" bizId="${user.id}" bizType="User"/>
 	</div>
 	
 	<layui:submitButtons id="saveUser" />
-	<input type="hidden" name="id" value=${user.id} />
+	<input type="hidden" username="id" value=${user.id} />
 </form>
 <!--#} -->
 <script>

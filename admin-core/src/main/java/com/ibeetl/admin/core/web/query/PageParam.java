@@ -3,11 +3,13 @@ package com.ibeetl.admin.core.web.query;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.beetl.sql.core.engine.PageQuery;
 
+import java.io.Serializable;
+
 /**
  * 子类继承此类获得翻页功能
  * @author lijiazhi
  */
-public class PageParam {
+public class PageParam implements Serializable {
     private Integer page = null;
     private Integer limit = null;
 

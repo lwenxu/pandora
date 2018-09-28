@@ -9,11 +9,11 @@ queryByCondition
     from ${entity.tableName} t
     where del_flag=0 
     \@//数据权限，该sql语句功能点  
-    and #function("${entity.code}.query")#
+    and #function("${entity.username}.query")#
     @for(attr in entity.list){
     		@if(attr.showInQuery){
-    \@if(!isEmpty(${attr.name})){
-        and  t.${attr.colName} =#${attr.name}#
+    \@if(!isEmpty(${attr.username})){
+        and  t.${attr.colName} =#${attr.username}#
     \@}
     		@}
     @}
@@ -21,7 +21,7 @@ queryByCondition
     
     
 
-batchDel${entity.name}ByIds
+batchDel${entity.username}ByIds
 ===
 
 * 批量逻辑删除

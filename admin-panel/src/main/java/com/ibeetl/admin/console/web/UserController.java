@@ -1,22 +1,36 @@
 package com.ibeetl.admin.console.web;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.*;
-
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.common.collect.Lists;
 import com.ibeetl.admin.console.constant.ResultType;
 import com.ibeetl.admin.console.domain.ResultDO;
 import com.ibeetl.admin.console.exception.ServiceExecException;
 import com.ibeetl.admin.console.service.GroupService;
+import com.ibeetl.admin.console.service.OrgConsoleService;
+import com.ibeetl.admin.console.service.RoleConsoleService;
+import com.ibeetl.admin.console.service.UserService;
 import com.ibeetl.admin.console.utils.ResultUtil;
+import com.ibeetl.admin.console.web.dto.UserExcelExportData;
 import com.ibeetl.admin.console.web.query.BatchStatusQuery;
+import com.ibeetl.admin.console.web.query.UserQuery;
+import com.ibeetl.admin.console.web.query.UserRoleQuery;
 import com.ibeetl.admin.console.web.vo.ResultVO;
 import com.ibeetl.admin.console.web.vo.UserVO;
+import com.ibeetl.admin.core.annotation.Function;
+import com.ibeetl.admin.core.annotation.Query;
+import com.ibeetl.admin.core.conf.CustomConfig;
+import com.ibeetl.admin.core.conf.PasswordConfig;
 import com.ibeetl.admin.core.entity.CoreGroup;
+import com.ibeetl.admin.core.entity.CoreUser;
+import com.ibeetl.admin.core.entity.CoreUserRole;
+import com.ibeetl.admin.core.file.FileItem;
+import com.ibeetl.admin.core.file.FileService;
+import com.ibeetl.admin.core.service.CorePlatformService;
+import com.ibeetl.admin.core.util.AnnotationUtil;
+import com.ibeetl.admin.core.util.ConvertUtil;
+import com.ibeetl.admin.core.util.PlatformException;
+import com.ibeetl.admin.core.util.ValidateConfig;
+import com.ibeetl.admin.core.util.enums.GeneralStateEnum;
+import com.ibeetl.admin.core.web.JsonResult;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -32,25 +46,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ibeetl.admin.console.service.OrgConsoleService;
-import com.ibeetl.admin.console.service.RoleConsoleService;
-import com.ibeetl.admin.console.service.UserService;
-import com.ibeetl.admin.console.web.dto.UserExcelExportData;
-import com.ibeetl.admin.console.web.query.UserQuery;
-import com.ibeetl.admin.console.web.query.UserRoleQuery;
-import com.ibeetl.admin.core.annotation.Function;
-import com.ibeetl.admin.core.annotation.Query;
-import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.entity.CoreUserRole;
-import com.ibeetl.admin.core.file.FileItem;
-import com.ibeetl.admin.core.file.FileService;
-import com.ibeetl.admin.core.service.CorePlatformService;
-import com.ibeetl.admin.core.util.AnnotationUtil;
-import com.ibeetl.admin.core.util.ConvertUtil;
-import com.ibeetl.admin.core.util.PlatformException;
-import com.ibeetl.admin.core.util.ValidateConfig;
-import com.ibeetl.admin.core.util.enums.GeneralStateEnum;
-import com.ibeetl.admin.core.web.JsonResult;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 用户管理接口
@@ -76,6 +79,10 @@ public class UserController {
 	FileService fileService;
 	@Autowired
 	GroupService groupService;
+	@Autowired
+	CustomConfig applicationConfig;
+	@Autowired
+	PasswordConfig.PasswordEncryptService passwordEncryptService;
 
    
 
@@ -144,10 +151,13 @@ public class UserController {
 		return JsonResult.success();
 	}
 
-	@PostMapping(MODEL + "/update.json")
+	@PostMapping(MODEL + "/update")
 	@Function("user.update")
 	@ResponseBody
 	public JsonResult update(@Validated(ValidateConfig.UPDATE.class) CoreUser user) {
+		if (StringUtils.isNotEmpty(user.getPassword())) {
+			user.setPassword(passwordEncryptService.password(user.getPassword()));
+		}
 		boolean success = userService.updateTemplate(user);
 		if (success) {
 			this.platformService.clearFunctionCache();
@@ -157,12 +167,12 @@ public class UserController {
 		}
 	}
 
-	@PostMapping(MODEL + "/add.json")
+	@PostMapping(MODEL + "/add")
 	@Function("user.add")
 	@ResponseBody
-	public JsonResult<Long> add(@Validated(ValidateConfig.ADD.class) CoreUser user) {
-		if (!platformService.isAllowUserName(user.getCode())) {
-			return JsonResult.failMessage("不允许的注册名字 " + user.getCode());
+	public JsonResult<Long> add( CoreUser user) {
+        if (!platformService.isAllowUserName(user.getNickname())) {
+			return JsonResult.failMessage("不允许的注册名字 " + user.getUsername());
 		}
 		user.setCreateTime(new Date());
 		userService.saveUser(user);
@@ -202,7 +212,7 @@ public class UserController {
 	}
 
 	private List<Long> getUserGroup(CoreUser coreUser) throws ServiceExecException {
-		ResultDO<List<CoreGroup>> group = groupService.queryGroupById(coreUser.getgId());
+		ResultDO<List<CoreGroup>> group = groupService.queryGroupById(coreUser.getGroup());
 		if (!group.getSuccess()) {
 			throw new ServiceExecException(ResultType.SERVICE_FAILURE.getDesc());
 		}
@@ -214,7 +224,7 @@ public class UserController {
 		return groupRet;
 	}
 
-	@PostMapping(MODEL + "/update")
+	@PostMapping(MODEL + "/updateStatus")
 	@ResponseBody
 	public JsonResult updateStatus(BatchStatusQuery query) {
 		if (CollectionUtils.isEmpty(query.getIds()) || StringUtils.isEmpty(query.getStatus())) {
@@ -243,7 +253,7 @@ public class UserController {
 		userService.batchUpdateUserState(dels, GeneralStateEnum.DISABLE);
 		for (Long id : dels) {
 			CoreUser user = userService.queryById(id);
-			this.platformService.restUserSession(user.getCode());
+			this.platformService.restUserSession(user.getUsername());
 		}
 		return JsonResult.success();
 

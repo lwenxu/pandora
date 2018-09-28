@@ -103,7 +103,7 @@ public class RbacAnnotationConfig {
 		audit.setFunctionName(functionName);
 		audit.setUserId(user.getId());
 		audit.setSuccess(success ? 1 : 0);
-		audit.setUserName(user.getName());
+		audit.setUserName(user.getNickname());
 		audit.setMessage(msg);
 		
 		audit.setIp(httpRequestLocal.getRequestIP());

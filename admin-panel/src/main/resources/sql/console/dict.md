@@ -12,8 +12,8 @@ queryByCondition
     @if(!isEmpty(value)){
         and  t.VALUE like #"%"+value+"%"#
     @}
-    @if(!isEmpty(name)){
-        and  t.NAME like #"%"+name+"%"#
+    @if(!isEmpty(username)){
+        and  t.NAME like #"%"+username+"%"#
     @}
     @if(!isEmpty(typeName)){
         and  t.TYPE_NAME like #"%"+typeName+"%"#

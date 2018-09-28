@@ -12,17 +12,17 @@
         <div class="layui-form-item">
 		@for(item in array){
 			@if(item==null){continue;}
-			@if(item.name=="delFlag"){continue;}
-			@if(item.name=="version"){continue;}
-			@if(item.name=="attachmentId"){continue;}
+			@if(item.username=="delFlag"){continue;}
+			@if(item.username=="version"){continue;}
+			@if(item.username=="attachmentId"){continue;}
             <div class="layui-inline">
             <label class="layui-form-label">${item.displayName}</label>
 				<div class="layui-input-inline">
 					@if(isEmpty(item.dictType)){
-					<input type="text" name="${item.name}" class="layui-input${item.javaType=='Date'?' input-date'}" ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}>
+					<input type="text" username="${item.username}" class="layui-input${item.javaType=='Date'?' input-date'}" ${isNotEmpty(item.verifyList)?('lay-verify="'+verifyFormat(item.verifyList)+'"'):''}>
 					@}else{
 					<layui:simpleDictSelect style='layui-input-inline' type="${item.dictType}" layVerify="${verifyFormat(item.verifyList)}"
-								id="${item.name}" name="${item.name}" value="" />
+								id="${item.username}" username="${item.username}" value="" />
 					@}
 				</div>
             </div>
@@ -33,7 +33,7 @@
 	@if(entity.attachment){
     <div class="layui-row">
         <!-- 业务对象得有一个字段保存附件id，假设是attachmentId  -->
-        <layui:attachment name="attachmentId" batchFileUUID="\${uuid()}"  bizType="entity.name" isNew="true"  />
+        <layui:attachment username="attachmentId" batchFileUUID="\${uuid()}"  bizType="entity.username" isNew="true"  />
     </div>
 	@}
     <layui:submitButtons id="addButton" />

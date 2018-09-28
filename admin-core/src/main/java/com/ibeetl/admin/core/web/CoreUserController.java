@@ -51,7 +51,6 @@ public class CoreUserController {
 	public JsonResult<UserLoginInfo> login(String code, String password) {
 		UserLoginInfo info = userService.login(code, password);
 		if (info == null) {
-			
 			return JsonResult.failMessage("用户名密码错");
 		}
 		CoreUser user = info.getUser();

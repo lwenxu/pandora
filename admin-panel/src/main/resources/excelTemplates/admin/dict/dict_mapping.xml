@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <workbook>
-	<worksheet name="Template">
+	<worksheet username="Template">
 		<section startRow="0" endRow="2">
 		</section>
 		<loop startRow="3" endRow="3" items="list" var="dict"
 			varType="com.ibeetl.admin.console.web.dto.DictExcelImportData">
 			<section startRow="3" endRow="3">
 				<mapping row="3" col="0">dict.excelId</mapping>
-				<mapping row="3" col="1">dict.name</mapping>
+				<mapping row="3" col="1">dict.username</mapping>
 				<mapping row="3" col="2">dict.value</mapping>
 				<mapping row="3" col="3">dict.typeName</mapping>
 				<mapping row="3" col="4">dict.type</mapping>

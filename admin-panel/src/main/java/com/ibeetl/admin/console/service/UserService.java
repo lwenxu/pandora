@@ -1,23 +1,10 @@
 package com.ibeetl.admin.console.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.ibeetl.admin.console.domain.ResultDO;
-import com.ibeetl.admin.console.template.ServiceTemplate;
-import org.apache.catalina.User;
-import org.apache.commons.lang3.StringUtils;
-import org.beetl.sql.core.engine.PageQuery;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.ibeetl.admin.console.dao.UserDao;
+import com.ibeetl.admin.console.domain.ResultDO;
 import com.ibeetl.admin.console.exception.DeletedException;
 import com.ibeetl.admin.console.exception.NoResourceException;
+import com.ibeetl.admin.console.template.ServiceTemplate;
 import com.ibeetl.admin.console.web.dto.UserExcelExportData;
 import com.ibeetl.admin.console.web.query.UserRoleQuery;
 import com.ibeetl.admin.core.conf.PasswordConfig.PasswordEncryptService;
@@ -33,6 +20,18 @@ import com.ibeetl.admin.core.util.PlatformException;
 import com.ibeetl.admin.core.util.enums.CoreDictType;
 import com.ibeetl.admin.core.util.enums.DelFlagEnum;
 import com.ibeetl.admin.core.util.enums.GeneralStateEnum;
+import org.apache.catalina.User;
+import org.apache.commons.lang3.StringUtils;
+import org.beetl.sql.core.engine.PageQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -80,13 +79,13 @@ public class UserService extends BaseService<CoreUser> {
      */
     public void saveUser(CoreUser user) {
         CoreUser query = new CoreUser();
-        query.setCode(user.getCode());
+        query.setUsername(user.getUsername());
         CoreUser dbUser = userDao.templateOne(query);
         if (dbUser != null) {
             throw new PlatformException("保存用户信息失败,用户已经存在");
         }
         user.setCreateTime(new Date());
-        user.setState(GeneralStateEnum.ENABLE.getValue());
+        user.setStatus(GeneralStateEnum.ENABLE.getValue());
         user.setPassword(passwordEncryptService.password(user.getPassword()));
         user.setDelFlag(DelFlagEnum.NORMAL.getValue());
         userDao.insert(user, true);
@@ -203,10 +202,10 @@ public class UserService extends BaseService<CoreUser> {
         List<UserExcelExportData> items = new ArrayList<>();
         for (CoreUser user : list) {
             UserExcelExportData userItem = new UserExcelExportData();
-            userItem.setCode(user.getCode());
+            userItem.setCode(user.getUsername());
             userItem.setId(user.getId());
-            userItem.setName(user.getName());
-            CoreDict dict = dictService.findCoreDict(CoreDictType.USER_STATE, user.getState());
+            userItem.setName(user.getNickname());
+            CoreDict dict = dictService.findCoreDict(CoreDictType.USER_STATE, user.getStatus());
             userItem.setStateText(dict.getName());
 
             if (StringUtils.isNotEmpty(user.getJobType1())) {

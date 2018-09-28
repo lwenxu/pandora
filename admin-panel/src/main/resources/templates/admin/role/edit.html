@@ -5,15 +5,15 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色名称</label>
 			<div class="layui-input-block">
-				<input type="text" name="name"  value="${role.name}"
+				<input type="text" username="username"  value="${role.username}"
 					 class="layui-input" >
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色代码</label>
 			<div class="layui-input-inline">
-				<input type="text" name="code"  lay-verify="required"
-					 class="layui-input" value="${role.code}"
+				<input type="text" username="username"  lay-verify="required"
+					 class="layui-input" value="${role.username}"
 					>
 			</div>
 		</div>
@@ -24,13 +24,13 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色类型</label>
 			<layui:simpleDictSelect style='layui-input-inline' type="role_type"
-				id="type" name="type" value="${role.type}" />
+				id="type" username="type" value="${role.type}" />
 		</div>
 		</div>
 	</div>
 
 	
-	<input type="hidden" name="id" value=${role.id} />
+	<input type="hidden" username="id" value=${role.id} />
 	
 	<layui:submitButtons id="updateButton" />
 </form>

@@ -10,5 +10,5 @@ queryAllOrgCode
 
 * 根据id对应的code，目前用于传递给工作流系统
 
-	select code from core_org where id  in( #join(orgIds)#)
+	select username from core_org where id  in( #join(orgIds)#)
 

@@ -9,11 +9,13 @@ import org.beetl.sql.core.annotatoin.SqlStatement;
 import org.beetl.sql.core.mapper.BaseMapper;
 
 import com.ibeetl.admin.core.entity.CoreDict;
+import org.springframework.stereotype.Repository;
 
 /**
  * 字典DAO接口
  */
 @SqlResource("core.coreDict")
+@Repository
 public interface CoreDictDao extends BaseMapper<CoreDict> {
 
     /**

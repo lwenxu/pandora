@@ -114,7 +114,7 @@ create table CORE_DICT
 (
   id          NUMBER(11) not null,
   value       VARCHAR2(16) not null,
-  name        VARCHAR2(128) not null,
+  username        VARCHAR2(128) not null,
   type        VARCHAR2(64) not null,
   type_name   VARCHAR2(64) not null,
   sort        NUMBER(11),
@@ -136,7 +136,7 @@ tablespace USERS
   );
 comment on table CORE_DICT
   is '字典表';
-comment on column CORE_DICT.name
+comment on column CORE_DICT.username
   is '名称';
 comment on column CORE_DICT.type
   is '字典编码';
@@ -207,7 +207,7 @@ prompt Creating CORE_FILE...
 create table CORE_FILE
 (
   id            NUMBER(11) not null,
-  name          VARCHAR2(64),
+  username          VARCHAR2(64),
   path          VARCHAR2(255),
   biz_id        VARCHAR2(128),
   user_id       NUMBER(11),
@@ -252,8 +252,8 @@ prompt Creating CORE_FUNCTION...
 create table CORE_FUNCTION
 (
   id          NUMBER(11) not null,
-  code        VARCHAR2(256),
-  name        VARCHAR2(64),
+  username        VARCHAR2(256),
+  username        VARCHAR2(64),
   create_time DATE,
   access_url  VARCHAR2(256),
   parent_id   NUMBER(11),
@@ -289,8 +289,8 @@ prompt Creating CORE_MENU...
 create table CORE_MENU
 (
   id             NUMBER(11) not null,
-  code           VARCHAR2(64),
-  name           VARCHAR2(64),
+  username           VARCHAR2(64),
+  username           VARCHAR2(64),
   create_time    DATE,
   function_id    NUMBER(11),
   type           VARCHAR2(6),
@@ -332,8 +332,8 @@ prompt Creating CORE_ORG...
 create table CORE_ORG
 (
   id            NUMBER(11) not null,
-  code          VARCHAR2(16) not null,
-  name          VARCHAR2(128) not null,
+  username          VARCHAR2(16) not null,
+  username          VARCHAR2(128) not null,
   create_time   DATE,
   parent_org_id NUMBER(11),
   type          VARCHAR2(6) not null,
@@ -371,8 +371,8 @@ prompt Creating CORE_ROLE...
 create table CORE_ROLE
 (
   id          NUMBER(11) not null,
-  code        VARCHAR2(16),
-  name        VARCHAR2(255),
+  username        VARCHAR2(16),
+  username        VARCHAR2(255),
   create_time DATE,
   type        VARCHAR2(6)
 )
@@ -387,9 +387,9 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
-comment on column CORE_ROLE.code
+comment on column CORE_ROLE.username
   is '角色编码';
-comment on column CORE_ROLE.name
+comment on column CORE_ROLE.username
   is '角色名称';
 comment on column CORE_ROLE.create_time
   is '创建时间';
@@ -495,12 +495,12 @@ prompt Creating CORE_USER...
 create table CORE_USER
 (
   id          NUMBER(11) not null,
-  code        VARCHAR2(16),
-  name        VARCHAR2(16),
+  username        VARCHAR2(16),
+  username        VARCHAR2(16),
   password    VARCHAR2(64),
   create_time DATE,
   org_id      NUMBER(11),
-  state       VARCHAR2(16),
+  status       VARCHAR2(16),
   job_type1   VARCHAR2(16),
   del_flag    NUMBER(4),
   update_time DATE,
@@ -517,7 +517,7 @@ tablespace USERS
     minextents 1
     maxextents unlimited
   );
-comment on column CORE_USER.state
+comment on column CORE_USER.status
   is '用户状态 1:启用 0:停用';
 comment on column CORE_USER.del_flag
   is '用户删除标记 0:未删除 1:已删除';
@@ -700,57 +700,57 @@ values (45, 'role.query', '未定义', 1, '超级管理员', '172.16.49.65', to_
 commit;
 prompt 45 records loaded
 prompt Loading CORE_DICT...
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (1, 'DA0', '查看自己', 'data_access_type', '数据权限', 1, null, 0, '11111111111111111123', null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (2, 'DA1', '查看本公司', 'data_access_type', '数据权限', 3, null, 0, 'hello,go', null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (3, 'DA2', '查看同机构', 'data_access_type', '数据权限', 3, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (4, 'DA3', '查看本部门', 'data_access_type', '数据权限', 4, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (5, 'DA4', '查看集团', 'data_access_type', '数据权限', 5, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (6, 'DA5', '查看母公司', 'data_access_type', '数据权限', 6, null, 0, null, to_date('14-10-2017 11:45:02', 'dd-mm-yyyy hh24:mi:ss'));
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (7, 'FN0', '普通功能', 'function_type', '功能点类型', 2, null, 0, null, to_date('23-10-2017 10:18:03', 'dd-mm-yyyy hh24:mi:ss'));
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (8, 'FN1', '含数据权限', 'function_type', '功能点类型', 1, null, 0, null, to_date('23-10-2017 10:20:05', 'dd-mm-yyyy hh24:mi:ss'));
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (9, 'JT_01', '管理岗位', 'job_type', '岗位类型', 1, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (10, 'JT_02', '技术岗位', 'job_type', '岗位类型', 2, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (11, 'JT_S_01', '董事会', 'job_sub_managment_type', '管理岗位子类型', 1, '10', 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (12, 'JT_S_02', '秘书', 'job_sub_managment_type', '管理岗位子类型', 2, '10', 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (13, 'JT_S_03', '技术经理', 'job_dev_sub_type', '技术岗位子类型', 1, '11', 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (14, 'JT_S_04', '程序员', 'job_dev_sub_type', '技术岗位子类型', 2, '11', 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (15, 'MENU_M', '菜单', 'menu_type', '菜单类型', 3, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (16, 'MENU_N', '导航', 'menu_type', '菜单类型', 2, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (17, 'MENU_S', '系统', 'menu_type', '菜单类型', 1, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (18, 'ORGT0', '集团总部', 'org_type', '机构类型', 1, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (19, 'ORGT1', '分公司', 'org_type', '机构类型', 2, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (20, 'ORGT2', '部门', 'org_type', '机构类型', 3, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (21, 'ORGT3', '小组', 'org_type', '机构类型', 4, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (22, 'R0', '操作角色', 'role_type', '数据权限', 1, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (23, 'R1', '工作流角色', 'role_type', '用户角色', 2, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (24, 'S0', '禁用', 'user_state', '用户状态', 2, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (25, 'S1', '启用', 'user_state', '用户状态', 1, null, 0, null, null);
-insert into CORE_DICT (id, value, name, type, type_name, sort, parent, del_flag, remark, create_time)
+insert into CORE_DICT (id, value, username, type, type_name, sort, parent, del_flag, remark, create_time)
 values (26, 'sdfsd', 'sdfsdf', 'sdfsdf', 'sdfsdf', 1, null, 1, 'dsfsdf', to_date('18-02-2018 21:31:02', 'dd-mm-yyyy hh24:mi:ss'));
 commit;
 prompt 26 records loaded
@@ -759,122 +759,122 @@ prompt Table is empty
 prompt Loading CORE_FILE_TAG...
 prompt Table is empty
 prompt Loading CORE_FUNCTION...
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (1, 'user', '用户功能', null, '/admin/user/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (2, 'user.query', '用户列表', null, null, 1, 'FN1');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (3, 'user.edit', '用户编辑', null, null, 1, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (6, 'org', '组织机构', null, '/admin/org/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (7, 'role', '角色管理', null, '/admin/role/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (8, 'menu', '菜单管理', null, '/admin/menu/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (9, 'function', '功能点管理', null, '/admin/function/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (10, 'roleFunction', '角色功能授权', null, '/admin/role/function.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (11, 'roleDataAccess', '角色数据授权', null, '/admin/role/data.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
-values (12, 'code', '代码生成', null, '/core/codeGen/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
+values (12, 'username', '代码生成', null, '/core/codeGen/index.do', 0, 'FN0');
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (13, 'dict', '字典管理', null, '/admin/dict/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (18, 'trace', '审计查询', null, '/admin/audit/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (19, 'file', '相关文档', null, '/trade/interAndRelate/file.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (91, 'test', '测试', to_date('11-10-2017 16:59:01', 'dd-mm-yyyy hh24:mi:ss'), '/test/test.do', 6, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (161, 'role.add', '角色添加', to_date('23-10-2017 09:45:05', 'dd-mm-yyyy hh24:mi:ss'), null, 7, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (167, 'workflow.admin', '工作流监控', null, '/admin/workflow/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
-values (180, 'code.query', '代码生成测试', null, null, 12, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
+values (180, 'username.query', '代码生成测试', null, null, 12, 'FN0');
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (181, 'blog.query', '博客查询功能', null, null, 182, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (182, 'blog', '博客测试', null, '/admin/blog/index.do', 0, 'FN0');
-insert into CORE_FUNCTION (id, code, name, create_time, access_url, parent_id, type)
+insert into CORE_FUNCTION (id, username, username, create_time, access_url, parent_id, type)
 values (1001, '子系统生成', '子系统生成', to_date('12-03-2018 11:52:25', 'dd-mm-yyyy hh24:mi:ss'), '/core/codeGen/project.do', 0, 'FN0');
 commit;
 prompt 20 records loaded
 prompt Loading CORE_MENU...
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (8, '系统管理', '系统管理', null, null, 'MENU_S', 0, 1, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (10, '用户管理', '用户管理', null, 1, 'MENU_M', 18, 1, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (11, '组织机构管理', '组织机构管理', null, 6, 'MENU_M', 18, 2, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (12, '角色管理', '角色管理', null, 7, 'MENU_M', 18, 3, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (13, '菜单项', '菜单项', null, 8, 'MENU_M', 18, 4, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (14, '功能点管理', '功能点管理', null, 9, 'MENU_M', 18, 5, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (15, '字典数据管理', '字典数据管理', null, 13, 'MENU_M', 18, 6, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (16, '审计查询', '审计查询', null, 18, 'MENU_M', 19, 7, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (17, '代码生成', '代码生成', null, 12, 'MENU_M', 1002, 8, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (18, '基础管理', '基础管理', null, null, 'MENU_N', 8, 1, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (19, '监控管理', '监控管理', null, null, 'MENU_N', 8, 2, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (20, '流程监控', '流程监控', null, 167, 'MENU_M', 19, 3, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (21, '角色功能授权', '角色功能授权', null, 10, 'MENU_M', 18, 8, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (22, '角色数据授权', '角色数据授权', null, 11, 'MENU_M', 18, 9, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (23, '博客测试', '博客测试1', null, 182, 'MENU_M', 19, 9, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (1002, '代码生成管理', '代码生成管理', to_date('12-03-2018 11:52:53', 'dd-mm-yyyy hh24:mi:ss'), null, 'MENU_N', 8, 2, null);
-insert into CORE_MENU (id, code, name, create_time, function_id, type, parent_menu_id, seq, icon)
+insert into CORE_MENU (id, username, username, create_time, function_id, type, parent_menu_id, seq, icon)
 values (1003, '子系统生成', '子系统生成', to_date('12-03-2018 13:21:54', 'dd-mm-yyyy hh24:mi:ss'), 1001, 'MENU_M', 1002, 1, null);
 commit;
 prompt 17 records loaded
 prompt Loading CORE_ORG...
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (1, '集团公司', '集团', to_date('02-02-2018 17:18:50', 'dd-mm-yyyy hh24:mi:ss'), null, 'ORGT0', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (3, '信息科技部门', '信息科技部门', null, 1, 'ORGT2', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (4, '贵州银行', '贵州银行', to_date('02-02-2018 17:18:56', 'dd-mm-yyyy hh24:mi:ss'), 1, 'ORGT1', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (5, '贵州银行金科', '贵州银行金融科技开发公司', null, 4, 'ORGT1', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (6, '金科研发', '金科研发', null, 5, 'ORGT2', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (7, '金科研发部门', '金科研发部门', to_date('05-02-2018 13:49:52', 'dd-mm-yyyy hh24:mi:ss'), 6, 'ORGT2', 0);
-insert into CORE_ORG (id, code, name, create_time, parent_org_id, type, del_flag)
+insert into CORE_ORG (id, username, username, create_time, parent_org_id, type, del_flag)
 values (8, '金科研发2部', '金科研发2部', to_date('05-02-2018 13:50:43', 'dd-mm-yyyy hh24:mi:ss'), 6, 'ORGT2', 0);
 commit;
 prompt 7 records loaded
 prompt Loading CORE_ROLE...
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (1, 'DEPT_MANAGER', '部门管理员', null, 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (2, 'CEO', '公司CEO', null, 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (3, 'ASSIST', '助理', null, 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (12, '111', '2324324', to_date('06-09-2017 04:08:00', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (13, '1111', '哈哈', to_date('06-09-2017 04:09:05', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (15, 'admin', 'ivy', to_date('06-09-2017 05:35:04', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (17, '123', '我', to_date('06-09-2017 21:23:03', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (18, '23', '234', to_date('06-09-2017 21:41:03', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (19, '132484', '1', to_date('06-09-2017 21:42:02', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
-insert into CORE_ROLE (id, code, name, create_time, type)
+insert into CORE_ROLE (id, username, username, create_time, type)
 values (173, 'dept.admin', '部门辅助管理员', to_date('25-10-2017 10:29:03', 'dd-mm-yyyy hh24:mi:ss'), 'R0');
 commit;
 prompt 10 records loaded
@@ -949,15 +949,15 @@ values (200, 1, 23, null);
 commit;
 prompt 9 records loaded
 prompt Loading CORE_USER...
-insert into CORE_USER (id, code, name, password, create_time, org_id, state, job_type1, del_flag, update_time, job_type0)
+insert into CORE_USER (id, username, username, password, create_time, org_id, status, job_type1, del_flag, update_time, job_type0)
 values (1, 'admin', '超级管理员1', '123456', to_date('13-09-2017 09:21:03', 'dd-mm-yyyy hh24:mi:ss'), 1, 'S1', 'JT_S_01', 0, to_date('13-09-2017 09:21:03', 'dd-mm-yyyy hh24:mi:ss'), 'JT_01');
-insert into CORE_USER (id, code, name, password, create_time, org_id, state, job_type1, del_flag, update_time, job_type0)
+insert into CORE_USER (id, username, username, password, create_time, org_id, status, job_type1, del_flag, update_time, job_type0)
 values (171, 'lixx', '李小小', null, to_date('28-01-2018 11:21:20', 'dd-mm-yyyy hh24:mi:ss'), 3, 'S1', 'JT_S_04', 0, null, 'JT_02');
-insert into CORE_USER (id, code, name, password, create_time, org_id, state, job_type1, del_flag, update_time, job_type0)
+insert into CORE_USER (id, username, username, password, create_time, org_id, status, job_type1, del_flag, update_time, job_type0)
 values (172, 'lixx2', '李xx2', '123456', to_date('28-01-2018 11:22:38', 'dd-mm-yyyy hh24:mi:ss'), 4, 'S1', 'JT_S_02', 0, null, 'JT_01');
-insert into CORE_USER (id, code, name, password, create_time, org_id, state, job_type1, del_flag, update_time, job_type0)
+insert into CORE_USER (id, username, username, password, create_time, org_id, status, job_type1, del_flag, update_time, job_type0)
 values (173, 'test1', 'test1', '123', to_date('28-01-2018 14:44:55', 'dd-mm-yyyy hh24:mi:ss'), 5, 'S1', 'JT_S_04', 0, null, 'JT_02');
-insert into CORE_USER (id, code, name, password, create_time, org_id, state, job_type1, del_flag, update_time, job_type0)
+insert into CORE_USER (id, username, username, password, create_time, org_id, status, job_type1, del_flag, update_time, job_type0)
 values (174, 'hank250', '李小熊', null, to_date('16-02-2018 11:36:41', 'dd-mm-yyyy hh24:mi:ss'), 4, 'S1', 'JT_S_04', 0, null, 'JT_02');
 commit;
 prompt 5 records loaded

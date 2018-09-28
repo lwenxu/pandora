@@ -6,11 +6,11 @@ queryByCondtion
 	    r.*
 	@}
 	from core_role r where 1=1
-	@if(!isEmpty(code)){
-	    and  r.code like #"%"+code+"%"#
+	@if(!isEmpty(username)){
+	    and  r.username like #"%"+username+"%"#
 	@}
-	@if(!isEmpty(name)){
-	    and  r.name like #"%"+name+"%"#
+	@if(!isEmpty(username)){
+	    and  r.username like #"%"+username+"%"#
 	@}
 	
 	@if(!isEmpty(type)){
@@ -33,10 +33,10 @@ queryUser
 	and u.DEL_FLAG=0 
 	and r.id=#roleId#
 	@if(!isEmpty(userCode)){
-	    and  u.code like #"%"+userCode+"%"#
+	    and  u.username like #"%"+userCode+"%"#
 	@}
 	@if(!isEmpty(userName)){
-	    and  u.name like #"%"+userName+"%"#
+	    and  u.username like #"%"+userName+"%"#
 	@}
 	@pageIgnoreTag(){
 	   order by u.id desc

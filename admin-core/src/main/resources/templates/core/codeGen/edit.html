@@ -21,8 +21,8 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">主键</label>
 				<div class="layui-input-inline">
-					<input type="text" name="entity.idAttribute.name" readonly="readonly"
-						value="${entity.idAttribute.name}" class="layui-input">
+					<input type="text" username="entity.idAttribute.username" readonly="readonly"
+						value="${entity.idAttribute.username}" class="layui-input">
 				</div>
 			</div>
 		</div>
@@ -36,11 +36,11 @@
 	<div class="layui-row">
 		<div class="layui-form-item">
 			<div class="layui-inline">
-				<select name="nameAttr">
+				<select username="nameAttr">
 					<!--#  
 			for(attr in entity.list){
 			-->
-					<option value="${attr.name}" ${attrLP.index==1? "selected=''"}>${attr.name}</option>
+					<option value="${attr.username}" ${attrLP.index==1? "selected=''"}>${attr.username}</option>
 					<!--#}  -->
 				</select>
 			</div>
@@ -55,7 +55,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">表名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="entity.tableName" readonly
+					<input type="text" username="entity.tableName" readonly
 						value="${entity.tableName}" class="layui-input">
 				</div>
 			</div>
@@ -64,14 +64,14 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">类名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="entity.name" value="${entity.name}"
+					<input type="text" username="entity.username" value="${entity.username}"
 						class="layui-input">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">系统包名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="basePackage"
+					<input type="text" username="basePackage"
 						value="com.ibeetl.cms" class="layui-input">
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">业务名称</label>
 			<div class="layui-input-inline">
-				<input type="text" name="entity.displayName" value="${entity.name}"
+				<input type="text" username="entity.displayName" value="${entity.username}"
 					class="layui-input">
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">变量名</label>
 			<div class="layui-input-inline">
-				<input type="text" name="entity.code" value="${entity.code}"
+				<input type="text" username="entity.username" value="${entity.username}"
 					class="layui-input">
 			</div>
 		</div>
@@ -102,14 +102,14 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">urlBase</label>
 				<div class="layui-input-inline">
-					<input type="text" name="urlBase" value="cms" class="layui-input">
+					<input type="text" username="urlBase" value="cms" class="layui-input">
 				</div>
 			</div>
 
 			<div class="layui-inline">
 				<label class="layui-form-label">system</label>
 				<div class="layui-input-inline">
-					<input type="text" name="entity.system" value="cms"
+					<input type="text" username="entity.system" value="cms"
 						class="layui-input">
 				</div>
 			</div>
@@ -127,7 +127,7 @@
 			<div class="layui-inline">
 				<div class="layui-input-inline">
 					<input type="checkbox"
-					name="entity.includeExcel"
+					username="entity.includeExcel"
 					lay-skin="primary" value="true" title="导入导出"/>
 				</div>
 			</div>
@@ -136,7 +136,7 @@
 			<div class="layui-inline">
 				<div class="layui-input-inline">
 					<input type="checkbox"
-					name="entity.attachment"
+					username="entity.attachment"
 					lay-skin="primary" value="true" title="关联附件"/>
 				</div>
 			</div>
@@ -144,13 +144,13 @@
 			<div class="layui-inline">
 				<div class="layui-input-inline">
 					<input type="checkbox"
-					name="entity.autoAddFunction"
+					username="entity.autoAddFunction"
 					lay-skin="primary" value="true" title=" 自动配置功能点"/>
 					
 				</div>
 				<div class="layui-input-inline">
 					<input type="checkbox"
-					name="entity.autoAddMenu"
+					username="entity.autoAddMenu"
 					lay-skin="primary" value="true" title="添加到菜单"/>
 					
 				</div>
@@ -190,15 +190,15 @@
 			-->
 			<tr>
 				<td><input type="text"
-					name="entity.list[${attrLP.index-1}].name" readonly
-					value="${attr.name}" class="layui-input" /></td>
+					username="entity.list[${attrLP.index-1}].username" readonly
+					value="${attr.username}" class="layui-input" /></td>
 				<td><input type="text"
-					name="entity.list[${attrLP.index-1}].displayName"
+					username="entity.list[${attrLP.index-1}].displayName"
 					value="${attr.displayName}" class="layui-input"></td>
 				<td><input type="checkbox"
-					name="entity.list[${attrLP.index-1}].showInQuery"
+					username="entity.list[${attrLP.index-1}].showInQuery"
 					lay-skin="primary" value="true" title="作为搜索"></td>
-				<td><input type="text" name="entity.list[${attrLP.index-1}].dictType"  value=""
+				<td><input type="text" username="entity.list[${attrLP.index-1}].dictType"  value=""
 					class="layui-input"></td>
 				<td>
 						<div class="layui-btn-container verifyGroup" data-index="${attrLP.index-1}">

@@ -1,13 +1,11 @@
 package com.ibeetl.admin.console.web.query;
 
 import java.util.Date;
-import java.util.List;
 
 import com.ibeetl.admin.console.constant.SortType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ibeetl.admin.core.annotation.Query;
@@ -19,16 +17,16 @@ import com.ibeetl.admin.core.web.query.PageParam;
 public class UserQuery extends PageParam {
 
 	@Query(name="账号",display=true,fuzzy=true)
-	private String code ;
+	private String username;
 	@Query(name="名称",display=true,fuzzy=true)
 	private String name ;
-	private String nickName;
+	private String nickname;
 	@Query(name = "部门", display = true, type = Query.TYPE_CONTROL, control = "org")
 	@Getter @Setter
 	private Long group;
 	
 	@Query(name="状态",display=true,type=Query.TYPE_DICT,dict=CoreDictType.USER_STATE)
-	private String state;
+	private String status;
 
 	@Query(name="排序")
 	private String sorter;
@@ -51,18 +49,18 @@ public class UserQuery extends PageParam {
 	private Date createDateMax;
 
 
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public String getCode() {
-		return code;
+	public String getUsername() {
+		return username;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getName() {
 		return name;
@@ -84,11 +82,11 @@ public class UserQuery extends PageParam {
 		return sorter;
 	}
 
-	public String getState() {
-		return state;
+	public String getStatus() {
+		return status;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

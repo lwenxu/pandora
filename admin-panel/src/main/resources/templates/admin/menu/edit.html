@@ -5,21 +5,21 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单名</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" autocomplete="off"
-					placeholder="请输入名称" class="layui-input" value="${menu.name}">
+				<input type="text" username="username" autocomplete="off"
+					placeholder="请输入名称" class="layui-input" value="${menu.username}">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单代码</label>
 			<div class="layui-input-inline">
-				<input type="text" name="code"  lay-verify="required"
+				<input type="text" username="username"  lay-verify="required"
 					placeholder="请输入" autocomplete="off" class="layui-input"
-					value="${menu.code}">
+					value="${menu.username}">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单地址</label>
-			<layui:menuFunctionInput style='layui-input-inline' name="functionId" id="functionId"
+			<layui:menuFunctionInput style='layui-input-inline' username="functionId" id="functionId"
 							value="${menu.functionId}"></layui:menuFunctionInput>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">菜单排序</label>
 					<div class="layui-input-inline">
-					<input type="text" name="seq" id="seq"  lay-verify="required"
+					<input type="text" username="seq" id="seq"  lay-verify="required"
 						placeholder="请输入" autocomplete="off" class="layui-input"
 						value="${menu.seq}">
 					</div>
@@ -38,7 +38,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">菜单图标</label>
 				<div class="layui-input-inline">
-				<input type="text" name="icon"  lay-verify="required"
+				<input type="text" username="icon"  lay-verify="required"
 					placeholder="请输入" autocomplete="off" class="layui-input"
 					value="${menu.icon}">
 				</div>
@@ -50,7 +50,7 @@
 			<div class="layui-form-item">
 				<div class="layui-inline">
 					<label class="layui-form-label">所在父菜单</label>
-					<layui:menuInput style='layui-input-inline' name="parentMenuId" id="parentMenuId"
+					<layui:menuInput style='layui-input-inline' username="parentMenuId" id="parentMenuId"
 						value="${menu.parentMenuId}"></layui:menuInput>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">菜单类型</label>
 				<layui:simpleDictSelect style='layui-input-inline' type="menu_type"
-					id="type" name="type" value="${menu.type}" />
+					id="type" username="type" value="${menu.type}" />
 			</div>
 		</div>
 
@@ -68,7 +68,7 @@
 	
 	
 	<layui:submitButtons id="saveMenu" />
-	<input type="hidden" name="id" value=${menu.id} />
+	<input type="hidden" username="id" value=${menu.id} />
 </form>
 <!--#} -->
 <script>
