@@ -36,7 +36,7 @@ public class FileSystemContorller {
 	private static final String MODEL = "/core/file";
 	
 	/*附件类操作*/
-	@PostMapping(MODEL + "/uploadAttachment.json")
+	@PostMapping(MODEL + "/uploadAttachment")
     @ResponseBody
     public JsonResult uploadFile(@RequestParam("file") MultipartFile file,String batchFileUUID,String bizType,String bizId) throws IOException {
         if(file.isEmpty()) {
