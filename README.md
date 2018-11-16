@@ -1,13 +1,6 @@
 # 1 使用说明
 
 ## 1.1 安装
-
-> 本系统基于Spring Boot 2 ，因此请务必使用JDK8，且打开编译选项parameters
-> - Eclipse中开启的办法Preferences->java->Compiler下勾选Store information about method parameters选项。
-这样在使用eclipse编译java文件的时候就会将参数名称编译到class文件中。
-> - Idea中开启的方法File->Settings->Build,Execution,Deployment->Java Compiler下的Additional command line parameters选项中添加-parameters。
-
-
 1. 通过IDE导入此Maven工程，包含俩个子工程
 
 * core  ，核心包，包含了缓存，数据权限，公用的JS和HTML页面。

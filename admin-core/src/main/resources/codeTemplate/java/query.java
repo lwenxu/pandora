@@ -1,6 +1,6 @@
 package ${package};
 
-import com.lamp.core.annotation.Query;
+import com.ibeetl.admin.core.annotation.Query;
 
 /**
  *${entity.displayName}查询

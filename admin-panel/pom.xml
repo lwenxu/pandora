@@ -1,41 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>admin-panel</artifactId>
+	<artifactId>admin-pannel</artifactId>
 	<packaging>jar</packaging>
-	<properties>
-		<java.version>1.8</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<parent>
+		<groupId>com.ibeetl</groupId>
 		<artifactId>pandora</artifactId>
-		<groupId>com.lamp</groupId>
-		<version>1.0.0</version>
+		<version>1.1.5</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<dependencies>
 		<dependency>
-			<groupId>com.lamp</groupId>
+			<groupId>com.ibeetl</groupId>
 			<artifactId>admin-core</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.5</version>
 		</dependency>
+
+		<!-- 		重新覆盖mysql的版本，原因：虽然admin-core更新过mysql版本，但由于parent是admin-cloud，导致更新的版本失效 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.5</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

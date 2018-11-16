@@ -1,6 +1,6 @@
 package ${package};
 
-import com.lamp.core.util.ValidateConfig;
+import com.ibeetl.admin.core.util.ValidateConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibeetl.admin.console.web.dto.DictExcelImportData;
 import com.ibeetl.admin.console.web.query.UserQuery;
-import com.lamp.core.annotation.Function;
+import com.ibeetl.admin.core.annotation.Function;
 {basePackage}.entity.*;
 import ${basePackage}.service.*;{basePackage}.web.query.*;
 
